@@ -1,0 +1,29 @@
+﻿<mui:ModernWindow x:Class="Pomodoro.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+        Title="PomodoroTM" IsTitleVisible="True"
+        LogoData="M 224,81 L 234,115 232,128 227,145 223,156 214,168 203,183 195,193 181,199 160,211 139,213 110,215 87,212 67,204 43,194 28,179 10,156 3,130 1,106 6,83 15,66 31,48 48,37 57,34 73,32 77,28 69,18 57,10 69,10 79,19 87,21 93,24 103,22 108,12 113,23 123,25 130,9 131,2 140,0 141,13 137,20 138,28 140,32 153,29 169,27 179,31 196,33 207,39 211,42 193,38 176,41 185,42 196,47 203,52 215,63 223,76 224,81 161,42 185,60 185,64 173,59 161,55 147,48 140,41 133,41 121,42 118,41 108,43 94,49 76,49 62,49 47,47 41,49 58,43 68,42 85,41 100,36 112,31 84,29 80,28 "          
+        ContentSource="/Pages/Home.xaml" 
+                  Focusable="False" 
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                  TextOptions.TextFormattingMode="Display" 
+                  UseLayoutRounding="True" 
+                  WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow"  
+                >
+
+
+    <mui:ModernWindow.MenuLinkGroups>
+        <mui:LinkGroup DisplayName="Pomodoro Time Manager" >
+
+        </mui:LinkGroup>
+    </mui:ModernWindow.MenuLinkGroups>
+
+
+    <mui:ModernWindow.TitleLinks>
+        <mui:Link DisplayName="Pomodoro" Source="/Pages/Home.xaml"/>
+        <mui:Link DisplayName="Tasks"   Source="/Pages/Tasks.xaml" />
+        <mui:Link DisplayName="Settings"  Source="/Pages/Settings.xaml" />
+    </mui:ModernWindow.TitleLinks>
+
+</mui:ModernWindow>
