@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\gefry\documents\visual studio 2013\Projects\Pomodoro\Pomodoro\obj\Debug\
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\
 Pomodoro
 none
 false
 DEBUG;TRACE
-C:\Users\gefry\documents\visual studio 2013\Projects\Pomodoro\Pomodoro\App.xaml
-101191903930
+E:\WorkRepositories\Pomodoro\Pomodoro\App.xaml
+9399367156
 3-378405296
-27216343158
-19-1285970376
-Assets\ModernUI.PomodoroTheme.xaml;Content\TaskGridView.xaml;Content\TaskPanelView.xaml;Content\TimerPanel.xaml;MainWindow.xaml;Content\About.xaml;Content\SettingsAppearance.xaml;Pages\Home.xaml;Pages\Settings.xaml;Pages\Tasks.xaml;
+25-1140628196
+1975157244
+Assets\ModernUI.PomodoroTheme.xaml;Content\TaskGridView.xaml;Content\TimerPanel.xaml;MainWindow.xaml;Content\About.xaml;Content\SettingsAppearance.xaml;Pages\Home.xaml;Pages\Settings.xaml;Pages\Tasks.xaml;
 
-True
+False
 

@@ -37,3 +37,6 @@ C:\Users\gefry\documents\visual studio 2013\Projects\Pomodoro\Pomodoro\bin\Debug
 C:\Users\gefry\documents\visual studio 2013\Projects\Pomodoro\Pomodoro\bin\Debug\Sparrow.Chart.Wpf.40.xml
 C:\Users\gefry\documents\visual studio 2013\Projects\Pomodoro\Pomodoro\obj\Debug\Content\TaskPanelView.baml
 C:\Users\gefry\documents\visual studio 2013\Projects\Pomodoro\Pomodoro\obj\Debug\Content\TaskPanelView.g.cs
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Pomodoro.exe.config
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.exe
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.pdb
