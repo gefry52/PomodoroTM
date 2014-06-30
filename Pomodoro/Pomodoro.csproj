@@ -88,6 +88,9 @@
       <DependentUpon>TimerPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\TimerPanelViewModel.cs" />
+    <Compile Include="Controls\TaskViewControl.xaml.cs">
+      <DependentUpon>TaskViewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\ITaskStyle.cs" />
     <Compile Include="Model\TaskStyle.cs" />
     <Compile Include="Pages\Home.xaml.cs">
@@ -106,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Content\TimerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TaskViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,9 +174,7 @@
     <Content Include="Resources\images-png.jpg" />
     <Content Include="Resources\images.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
