@@ -14,46 +14,59 @@ namespace Pomodoro.Pages
     class HomeViewModel: INotifyPropertyChanged
     
     {    
-        public event PropertyChangedEventHandler PropertyChanged;
-    
-        private Model.ITaskModel _currentTask {get;set;}
-        
         
 
-        public Model.ITaskModel CurrentTask
+        public event PropertyChangedEventHandler PropertyChanged;
+    
+        private Model.ITaskModel _selectedTask { get; set; }
+        private Model.ITaskModel _currentTask { get; set; }
+        private IQueryable<Model.ITaskModel> _toDayTasks;
+        
+
+        public Model.ITaskModel SelectedTask
         {
-            get{return _currentTask;}
+            get{return _selectedTask;}
             set
             {
-                _currentTask=value;
-                OnPropertyChanged("CurrentTask");
-                OnPropertyChanged("CurrentTaskTitle");
-                OnPropertyChanged("CurrentTaskDescription");
-                OnPropertyChanged("CurrentTaskPriorytiIndex");
-                OnPropertyChanged("CurrentTaskPomodorosSpent");
-                OnPropertyChanged("CurrentTaskState");
+                _selectedTask=value;
+                OnPropertyChanged("SelectedTask");
+                OnPropertyChanged("SelectedTaskTitle");
+                OnPropertyChanged("SelectedTaskDescription");
+                OnPropertyChanged("SelectedTaskPriorytiIndex");
+                OnPropertyChanged("SelectedTaskPomodorosSpent");
+                OnPropertyChanged("SelectedTaskState");
             }
         }
 
-        public String CurrentTaskTitle 
+        public String SelectedTaskTitle 
         {
-            get { return _currentTask.Title; }
+            get { return _selectedTask.Title; }
             set {
-                    _currentTask.Title = value;
-                    OnPropertyChanged("CurrentTask");
+                    _selectedTask.Title = value;
+                    OnPropertyChanged("SelectedTask");
                 }
         }
 
-        public String CurrentTaskDescription
+        public String SelectedTaskDescription
         {
-            get { return _currentTask.Description; }
+            get { return _selectedTask.Description; }
             set
             {
-                _currentTask.Description = value;
-                OnPropertyChanged("CurrentTask");
+                _selectedTask.Description = value;
+                OnPropertyChanged("SelectedTask");
             }
         }
 
+        public IQueryable<Model.ITaskModel> ToDayTasks 
+        {
+            get { return _toDayTasks; }
+            set 
+            { 
+                _toDayTasks = value;
+                OnPropertyChanged("ToDayTasks");
+            }
+        } 
+        //
         public ObservableCollection<string> TaskPriorytiItem 
         {
             get 
@@ -67,44 +80,57 @@ namespace Pomodoro.Pages
             }
             set {}
         }
+        // 
 
-        public int CurrentTaskPriorytiIndex 
+
+        public int SelectedTaskPriorytiIndex 
         {
-            get { return (int)_currentTask.Priority; }
+            get { return (int)_selectedTask.Priority; }
             set 
             { 
-                _currentTask.Priority = (Model.Priority)value; 
-                OnPropertyChanged("CurrentTask"); 
+                _selectedTask.Priority = (Model.Priority)value;
+                OnPropertyChanged("SelectedTask"); 
             }
         }
 
-        public int CurrentTaskPomodorosSpent 
+        public int SelectedTaskPomodorosSpent 
         {
-            get { return _currentTask.CountPomodoroUnit; }
+            get { return _selectedTask.CountPomodoroUnit; }
             set 
             {
-                _currentTask.CountPomodoroUnit = value;
-                OnPropertyChanged("CurrentTask");
+                _selectedTask.CountPomodoroUnit = value;
+                OnPropertyChanged("SelectedTask");
             }
         }
 
-        public bool CurrentTaskState 
+        public bool SelectedTaskState 
         {
             get
             {
-                if (_currentTask.State == Model.State.done) return true;
+                if (_selectedTask.State == Model.State.done) return true;
                 else return false;
             }
             set
             {
-                if (value) _currentTask.State = Model.State.done;
-                else _currentTask.State = Model.State.open;
-                OnPropertyChanged("CurrentTask");
+                if (value) _selectedTask.State = Model.State.done;
+                else _selectedTask.State = Model.State.open;
+                OnPropertyChanged("SelectedTask");
             }
         }
 
+
+
         public HomeViewModel() 
         {
+            //+++++++++++++++++
+            Model.ITaskModel ts = new Model.TaskModel("first");
+            Model.TaskModel ts2 = new Model.TaskModel("second");
+            Repository.ITaskRepository rep = new Repository.TaskRepository();
+            rep.SaveTask(ts);
+            rep.SaveTask(ts2);
+            ToDayTasks = rep.GetTaskByDate(DateTime.Now);
+            //++++++++++++++++++
+            SelectedTask = ToDayTasks.First<Model.ITaskModel>();
             
         }
 
@@ -119,22 +145,22 @@ namespace Pomodoro.Pages
         }
 
         
-        private ICommand _setCurrentTask
+        private ICommand _setSelectedTask
         {
-            get { return new RelayCommand(x => ExecuteSetCurrentTask()); }
+            get { return new RelayCommand(x => ExecuteSetSelectedTask()); }
 
         }
 
         public ICommand SetCurrentTask
         {
-            get { return _setCurrentTask; }
+            get { return _setSelectedTask; }
             set { }
         }
 
-        private void ExecuteSetCurrentTask()
+        private void ExecuteSetSelectedTask()
         {
             int i = 1;
-            CurrentTask = new Model.TaskModel("huyna", Model.Priority.low, "asdasd" + i) { CountPomodoroUnit=3,State = Model.State.done};
+            SelectedTask = new Model.TaskModel("huyna", Model.Priority.low, "asdasd" + i) { CountPomodoroUnit=3,State = Model.State.done};
             i++;
         }
 

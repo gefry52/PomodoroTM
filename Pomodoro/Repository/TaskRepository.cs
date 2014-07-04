@@ -7,42 +7,47 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
+
 namespace Pomodoro.Repository
 {
     class TaskRepository : ITaskRepository
     {
         private List<Model.ITaskModel> _taskList;
-        const string TaskFileName = "../tasks.bin";
+        const string TaskFileName = "./tasks.bin";
 
-        public IQueryable<Model.ITaskModel> GetTasks()
+        public List<Model.ITaskModel> GetTasks()
         {
 
             if (File.Exists(TaskFileName))
             {
-                Stream TestFileStream = File.OpenRead(TaskFileName);
-                BinaryFormatter deserializer = new BinaryFormatter();
-                _taskList = (List<Model.ITaskModel>)deserializer.Deserialize(TestFileStream);
-                TestFileStream.Close();
+                using (Stream stream = File.Open(TaskFileName, FileMode.Open))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    _taskList = (List<Model.ITaskModel>)bin.Deserialize(stream);
+                }       
             }
             else 
             {
-                _taskList = null;
+
+                _taskList = new List<Model.ITaskModel>();
+
             }
-            return _taskList.AsQueryable();
+            return _taskList;
         }
 
         public IQueryable<Model.ITaskModel> GetTaskByDate(DateTime date) 
         {  
-            IQueryable<Model.ITaskModel> tasks = GetTasks();
+            IQueryable<Model.ITaskModel> tasks = GetTasks().AsQueryable<Model.ITaskModel>();
             IQueryable<Model.ITaskModel> tasksByDate = from  t in tasks 
-                                                where t.OpeningDate == date
+                                                where t.OpeningDate.Date == date.Date
                                                 select t;
             return tasksByDate;
         }
 
         public Model.ITaskModel GetTaskById(string id) 
         {
-            IQueryable<Model.ITaskModel> tasks = GetTasks();
+            IQueryable<Model.ITaskModel> tasks = GetTasks().AsQueryable<Model.ITaskModel>();
             IEnumerable<Model.ITaskModel> task = from t in tasks
                                             where t.Id == id                           
                                             select  t;
@@ -51,17 +56,17 @@ namespace Pomodoro.Repository
 
         public bool SaveTask(Model.ITaskModel task) 
         {
-            List<Model.ITaskModel> taskList = GetTasks().ToList<Model.ITaskModel>();
-            taskList.Remove(GetTaskById(task.Id));
-            taskList.Add(task);
-            try
-            {  
-                Stream FileStream = File.Create(TaskFileName);
-                BinaryFormatter serializer = new BinaryFormatter();
-                serializer.Serialize(FileStream, taskList.AsQueryable<Model.ITaskModel>());
-                FileStream.Close();
-                return true;
-            }
+            List<Model.ITaskModel> _taskList = GetTasks().ToList<Model.ITaskModel>();
+            _taskList.Remove(GetTaskById(task.Id));
+            _taskList.Add(task);
+            try {
+                using (Stream stream = File.Open(TaskFileName, FileMode.OpenOrCreate))
+                    {
+                        var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                        bformatter.Serialize(stream, _taskList);
+                        return true;
+                    }  
+                }
             catch { return false; }
         }
 

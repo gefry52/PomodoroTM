@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pomodoro.Model
 {
+    [Serializable]
     public class TaskModel:ITaskModel
     {
         private String _id;

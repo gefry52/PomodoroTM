@@ -28,6 +28,7 @@ namespace Pomodoro.Pages
             InitializeComponent();
             this.DataContext = new HomeViewModel();
             
+            
         }
 
         private void ModernButton_Click(object sender, RoutedEventArgs e)

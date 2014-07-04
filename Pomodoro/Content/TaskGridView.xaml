@@ -10,12 +10,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Title" Width="160" />
                     <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Priority" Width="80"/>
-                    <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Status" Width="80"/>
-                    
+                    <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Status" Width="80"/>    
                 </DataGrid.Columns>
-
-
-
             </DataGrid>
         </ScrollViewer>
     </Grid>

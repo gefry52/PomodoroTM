@@ -14,6 +14,7 @@
             <RowDefinition Height="auto"  />
             <RowDefinition Height="auto" />
             <RowDefinition  />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -28,19 +29,33 @@
 			Grid.ColumnSpan="3"
 			HorizontalAlignment="Right" VerticalAlignment="Top" />
         <Content:TimerPanel  Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Calendar Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="2" Margin="20" VerticalAlignment="Top"  />
-        <Content:TaskGridView Grid.Row="2"  Margin="0,0,0,0" VerticalAlignment="Top" />
+        <ScrollViewer  Grid.Row="2"  Margin="0,0,0,0" VerticalAlignment="Top">
+            <DataGrid ItemsSource="{Binding  ToDayTasks}" AutoGenerateColumns="False" CanUserResizeRows="False" HorizontalAlignment="Center">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path= Title}" ClipboardContentBinding="{x:Null}" Header="Title" Width="160" />
+                    <DataGridTextColumn Binding="{Binding Path= Priority}" ClipboardContentBinding="{x:Null}" Header="Priority" Width="80"/>
+                    <DataGridTextColumn Binding="{Binding Path= State}" ClipboardContentBinding="{x:Null}" Header="Status" Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <!--<Content:TaskGridView Grid.Row="2"  Margin="0,0,0,0" VerticalAlignment="Top" />-->
 
         <Controls:TaskViewControl Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top"
                                   IsEditable="False"
-                                  TaskTitle="{Binding CurrentTaskTitle,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                  TaskDescription="{Binding CurrentTaskDescription,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                  TaskTitle="{Binding SelectedTaskTitle,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                  TaskDescription="{Binding SelectedTaskDescription,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                   TaskPriorytiItems="{Binding TaskPriorytiItem,Mode=TwoWay}"
-                                  SelectedPriorytiIndex="{Binding CurrentTaskPriorytiIndex,  Mode=TwoWay}"
-                                  TaskPomodorosSpent="{Binding CurrentTaskPomodorosSpent,UpdateSourceTrigger=PropertyChanged}"
-                                  TaskState="{Binding CurrentTaskState,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedPriorytiIndex="{Binding SelectedTaskPriorytiIndex,  Mode=TwoWay}"
+                                  TaskPomodorosSpent="{Binding SelectedTaskPomodorosSpent,UpdateSourceTrigger=PropertyChanged}"
+                                  TaskState="{Binding SelectedTaskState,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                   />
-        <Button Content="Button" HorizontalAlignment="Left" Margin="101,215,-16,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.RowSpan="2"/>
+        
+        <Controls:ToDayInformationControl Grid.Column="1" Grid.ColumnSpan="2" Width="auto" Margin="10,15,-10,5" Grid.RowSpan="2" HorizontalAlignment="Center"/>
+        <!--
+        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Button" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Button" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Button" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}" />
+    -->
     </Grid>
 
 </UserControl>

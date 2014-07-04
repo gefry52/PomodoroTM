@@ -75,3 +75,5 @@ E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\FirstFloor.ModernUI.xml
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Sparrow.Chart.Wpf.40.xml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pages\Home.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.g.resources
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\ToDayInformationControl.baml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\ToDayInformationControl.g.cs

@@ -8,7 +8,7 @@ namespace Pomodoro.Repository
 {
     interface ITaskRepository
     {
-        IQueryable<Model.ITaskModel> GetTasks();
+        List<Model.ITaskModel> GetTasks();
         Model.ITaskModel GetTaskById(string id);
         IQueryable<Model.ITaskModel> GetTaskByDate(DateTime date);
         bool SaveTask(Model.ITaskModel task);

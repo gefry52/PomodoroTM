@@ -91,6 +91,9 @@
     <Compile Include="Controls\TaskViewControl.xaml.cs">
       <DependentUpon>TaskViewControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ToDayInformationControl.xaml.cs">
+      <DependentUpon>ToDayInformationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\ITaskStyle.cs" />
     <Compile Include="Model\TaskStyle.cs" />
     <Compile Include="Pages\Home.xaml.cs">
@@ -113,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TaskViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ToDayInformationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
