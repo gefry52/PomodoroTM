@@ -7,24 +7,33 @@
             >
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <!-- Title text box -->
-        <TextBox  HorizontalAlignment="Left" Height="23" Margin="0,16,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="300" Grid.Row="1" Name="TitleTextBox" />
+        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="23"  Name="TitleTextBox" />
         <!-- Description text box -->
-        <TextBox  HorizontalAlignment="Left" Height="123" Margin="0,65,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="300" Grid.Row="1" Name="DescriptionTextBox" />
+        <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="123"  TextWrapping="Wrap"  VerticalAlignment="Top"   Name="DescriptionTextBox" />
         <!-- Priority Item in  Combobox   -->
-        <ComboBox   HorizontalAlignment="Left" Margin="170,193,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="120" Name="PriorytiComboBox"/>
+        <ComboBox  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right"   VerticalAlignment="Top" Width="120" Name="PriorytiComboBox" />
         <!-- text labels -->
-        <Label Content="Title" HorizontalAlignment="Left" Margin="33,0,0,0" Grid.RowSpan="2" VerticalAlignment="Top" RenderTransformOrigin="-1.536,0.375"/>
-        <Label Content="Description" HorizontalAlignment="Left" Margin="33,44,0,0" Grid.RowSpan="2" VerticalAlignment="Top" RenderTransformOrigin="-1.536,0.375" Width="99" Height="16"/>
-        <Label Content="Priority" HorizontalAlignment="Left" Margin="33,193,0,0" Grid.RowSpan="2" VerticalAlignment="Top" RenderTransformOrigin="-1.536,0.375" Width="99" Height="16"/>
-        <Label Content="Number of pomodoros spent" HorizontalAlignment="Left" Margin="33,229,0,0" Grid.RowSpan="2" VerticalAlignment="Top" RenderTransformOrigin="-1.536,0.375" Width="176" Height="16"/>
-        <Label Content="State" HorizontalAlignment="Left" Margin="33,250,0,0" Grid.RowSpan="2" VerticalAlignment="Top" RenderTransformOrigin="-1.536,0.375" Width="99" Height="16"/>
+        <Label Grid.Row="0" Content="Title" HorizontalAlignment="Left"  VerticalAlignment="Top" />
+        <Label Grid.Row="2" Content="Description" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="99" Height="16"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Priority" HorizontalAlignment="Left"   VerticalAlignment="Top" RenderTransformOrigin="-1.536,0.375" Width="99" Height="16"/>
+        <Label Grid.Row="5" Content="Number of pomodoros spent" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="176" Height="16"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="State" HorizontalAlignment="Left"   VerticalAlignment="Top" Width="99" Height="16"/>
         <!-- Number of pomodoro spent -->
-        <Label  HorizontalAlignment="Left" Margin="227,232,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="63" Name="PomodoroSpentLabel"/>
+        <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right"   VerticalAlignment="Center" Width="63" Name="PomodoroSpentLabel"/>
         <!-- State CheckBox -->
-        <CheckBox Content="Is Done"  Margin="170,251,31,29" Grid.Row="1"  Name="StateCheckBox"/>
+        <CheckBox Grid.Row="6" Grid.Column="1" Content="Is Done"    Name="StateCheckBox" HorizontalAlignment="Right" />
     </Grid>
 </UserControl>

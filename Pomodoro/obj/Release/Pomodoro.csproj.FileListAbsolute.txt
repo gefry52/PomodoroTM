@@ -24,3 +24,16 @@ E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Pomodoro_MarkupCompile.cache
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Pomodoro_MarkupCompile.lref
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Pomodoro.csprojResolveAssemblyReference.cache
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Controls\ToDayInformationControl.g.cs
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\Pomodoro.exe
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\Pomodoro.pdb
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\FirstFloor.ModernUI.dll
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\Microsoft.Windows.Shell.dll
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\Sparrow.Chart.Wpf.40.dll
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\FirstFloor.ModernUI.xml
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\Sparrow.Chart.Wpf.40.xml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Content\TimerPanel.baml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Controls\ToDayInformationControl.baml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Pages\Home.baml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Pomodoro.g.resources
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Pomodoro.exe
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Pomodoro.pdb

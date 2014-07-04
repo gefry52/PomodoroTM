@@ -40,7 +40,6 @@ C:\Users\gefry\documents\visual studio 2013\Projects\Pomodoro\Pomodoro\obj\Debug
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Pomodoro.exe.config
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.exe
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.pdb
-E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.csprojResolveAssemblyReference.cache
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Assets\ModernUI.PomodoroTheme.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TaskGridView.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\TaskViewControl.baml
@@ -70,10 +69,10 @@ E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Pomodoro.pdb
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\FirstFloor.ModernUI.dll
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Microsoft.Windows.Shell.dll
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Sparrow.Chart.Wpf.40.dll
-E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\CountDownTimer.pdb
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\FirstFloor.ModernUI.xml
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Sparrow.Chart.Wpf.40.xml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pages\Home.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.g.resources
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\ToDayInformationControl.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\ToDayInformationControl.g.cs
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.csprojResolveAssemblyReference.cache

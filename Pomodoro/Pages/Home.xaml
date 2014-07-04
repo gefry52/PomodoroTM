@@ -14,10 +14,10 @@
             <RowDefinition Height="auto"  />
             <RowDefinition Height="auto" />
             <RowDefinition  />
-            <RowDefinition />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -28,8 +28,8 @@
 			Click="ModernButton_Click"
 			Grid.ColumnSpan="3"
 			HorizontalAlignment="Right" VerticalAlignment="Top" />
-        <Content:TimerPanel  Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <ScrollViewer  Grid.Row="2"  Margin="0,0,0,0" VerticalAlignment="Top">
+        <Content:TimerPanel  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
+        <ScrollViewer  Grid.Row="2" Grid.RowSpan="2" Margin="0,0,0,0" VerticalAlignment="Top">
             <DataGrid ItemsSource="{Binding  ToDayTasks}" AutoGenerateColumns="False" CanUserResizeRows="False" HorizontalAlignment="Center">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Path= Title}" ClipboardContentBinding="{x:Null}" Header="Title" Width="160" />
@@ -49,13 +49,19 @@
                                   TaskPomodorosSpent="{Binding SelectedTaskPomodorosSpent,UpdateSourceTrigger=PropertyChanged}"
                                   TaskState="{Binding SelectedTaskState,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                   />
+
+        <Controls:ToDayInformationControl Grid.Column="1" Grid.ColumnSpan="2" Width="auto" Margin="10,15,-10,5" Grid.RowSpan="2" HorizontalAlignment="Left"/>
+        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Previos" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}"  />
+            <Button Grid.Column="1" Content="Set as current" Width="120" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}"  />
+            <Button Grid.Column="2" Content="Next" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}"  />
+        </Grid>
         
-        <Controls:ToDayInformationControl Grid.Column="1" Grid.ColumnSpan="2" Width="auto" Margin="10,15,-10,5" Grid.RowSpan="2" HorizontalAlignment="Center"/>
-        <!--
-        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Button" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}" />
-        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Button" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}" />
-        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Button" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}" />
-    -->
     </Grid>
 
 </UserControl>
