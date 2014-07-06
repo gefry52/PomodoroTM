@@ -68,11 +68,11 @@ E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Pomodoro.exe
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Pomodoro.pdb
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\FirstFloor.ModernUI.dll
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Microsoft.Windows.Shell.dll
-E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Sparrow.Chart.Wpf.40.dll
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\FirstFloor.ModernUI.xml
-E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Sparrow.Chart.Wpf.40.xml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pages\Home.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.g.resources
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\ToDayInformationControl.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\ToDayInformationControl.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.csprojResolveAssemblyReference.cache
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\PomodoroTimerControl.baml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\PomodoroTimerControl.g.cs

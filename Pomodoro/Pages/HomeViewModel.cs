@@ -17,10 +17,11 @@ namespace Pomodoro.Pages
         
 
         public event PropertyChangedEventHandler PropertyChanged;
-    
-        private Model.ITaskModel _selectedTask { get; set; }
-        private Model.ITaskModel _currentTask { get; set; }
+
+        private Model.ITaskModel _selectedTask;
+        private Model.ITaskModel _currentTask;
         private IQueryable<Model.ITaskModel> _toDayTasks;
+        private bool _runTimer = false;
         
 
         public Model.ITaskModel SelectedTask
@@ -65,8 +66,31 @@ namespace Pomodoro.Pages
                 _toDayTasks = value;
                 OnPropertyChanged("ToDayTasks");
             }
-        } 
-        //
+        }
+
+        public Model.ITaskModel CurrentTask 
+        {
+            get { return _currentTask; }
+            set 
+            { 
+                _currentTask = value;
+                OnPropertyChanged("CurrentTask");
+            }
+        }
+
+        public bool RunTimer 
+        {
+            get { return _runTimer; }
+            set 
+            {
+                _runTimer = value;
+                OnPropertyChanged("RunTimer");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ObservableCollection<string> TaskPriorytiItem 
         {
             get 
@@ -123,15 +147,10 @@ namespace Pomodoro.Pages
         public HomeViewModel() 
         {
             //+++++++++++++++++
-            Model.ITaskModel ts = new Model.TaskModel("first");
-            Model.TaskModel ts2 = new Model.TaskModel("second");
             Repository.ITaskRepository rep = new Repository.TaskRepository();
-            rep.SaveTask(ts);
-            rep.SaveTask(ts2);
             ToDayTasks = rep.GetTaskByDate(DateTime.Now);
             //++++++++++++++++++
             SelectedTask = ToDayTasks.First<Model.ITaskModel>();
-            
         }
 
         public void OnPropertyChanged(string name)
@@ -159,9 +178,8 @@ namespace Pomodoro.Pages
 
         private void ExecuteSetSelectedTask()
         {
-            int i = 1;
-            SelectedTask = new Model.TaskModel("huyna", Model.Priority.low, "asdasd" + i) { CountPomodoroUnit=3,State = Model.State.done};
-            i++;
+            CurrentTask = SelectedTask;
+            RunTimer = false;
         }
 
     }

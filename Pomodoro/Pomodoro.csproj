@@ -12,7 +12,8 @@
     <AssemblyName>Pomodoro</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -53,9 +54,6 @@
     <Reference Include="Microsoft.Windows.Shell">
       <HintPath>..\packages\ModernUI.WPF.1.0.5\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
-    <Reference Include="Sparrow.Chart.Wpf.40">
-      <HintPath>..\packages\Sparrow.Chart.Wpf.13.1.0.117\lib\net40\Sparrow.Chart.Wpf.40.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -88,6 +86,9 @@
       <DependentUpon>TimerPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\TimerPanelViewModel.cs" />
+    <Compile Include="Controls\PomodoroTimerControl.xaml.cs">
+      <DependentUpon>PomodoroTimerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TaskViewControl.xaml.cs">
       <DependentUpon>TaskViewControl.xaml</DependentUpon>
     </Compile>
@@ -112,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Content\TimerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PomodoroTimerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

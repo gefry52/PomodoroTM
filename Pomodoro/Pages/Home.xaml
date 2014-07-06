@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:Content="clr-namespace:Pomodoro.Content"
-             xmlns:Controls="clr-namespace:Pomodoro.Controls" x:Class="Pomodoro.Pages.Home"
+             xmlns:Controls="clr-namespace:Pomodoro.Controls"
+             x:Class="Pomodoro.Pages.Home"
              mc:Ignorable="d"   
              x:Name="HomePage"
              >
@@ -24,22 +25,31 @@
         <mui:ModernButton  
 			Grid.Row="0"
 			Grid.Column="2" 
-			IconData="M 54.2499,34L 42,34L 42,21.7501L 45.9999,17.7501L 45.9999,26.7501L 53.9999,                                18.7501L 57.2499,22.0001L 49.2499,30.0001L 58.2499,30.0001L 54.2499,34 Z M 34,21.7501L                                34,34L 21.75,34L 17.75,30.0001L 26.75,30.0001L 18.75,22.0001L 22,18.7501L 30,26.7501L 30,17.7501L                                34,21.7501 Z M 21.75,42L 34,42L 34,54.25L 30,58.25L 30,49.25L 22,57.25L 18.75,54L 26.75,46L                                17.75,46L 21.75,42 Z M 42,54.25L 42,42L 54.2499,42L 58.2499,46L 49.2499,46.0001L 57.2499,54L                                53.9999,57.25L 45.9999,49.25L 45.9999,58.25L 42,54.25 Z" 
+			IconData="M 54.2499,34L 42,34L 42,21.7501L 45.9999,17.7501L 45.9999,26.7501L 53.9999,18.7501L 57.2499,22.0001L 49.2499,30.0001L 58.2499,30.0001L 54.2499,34 Z M 34,21.7501L                                34,34L 21.75,34L 17.75,30.0001L 26.75,30.0001L 18.75,22.0001L 22,18.7501L 30,26.7501L 30,17.7501L                                34,21.7501 Z M 21.75,42L 34,42L 34,54.25L 30,58.25L 30,49.25L 22,57.25L 18.75,54L 26.75,46L                                17.75,46L 21.75,42 Z M 42,54.25L 42,42L 54.2499,42L 58.2499,46L 49.2499,46.0001L 57.2499,54L                                53.9999,57.25L 45.9999,49.25L 45.9999,58.25L 42,54.25 Z" 
 			Click="ModernButton_Click"
 			Grid.ColumnSpan="3"
 			HorizontalAlignment="Right" VerticalAlignment="Top" />
-        <Content:TimerPanel  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
-        <ScrollViewer  Grid.Row="2" Grid.RowSpan="2" Margin="0,0,0,0" VerticalAlignment="Top">
-            <DataGrid ItemsSource="{Binding  ToDayTasks}" AutoGenerateColumns="False" CanUserResizeRows="False" HorizontalAlignment="Center">
+        
+        <Controls:PomodoroTimerControl  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Run="{Binding RunTimer, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        
+            <DataGrid  Grid.Row="2" Grid.RowSpan="2" 
+                       VerticalAlignment="Top" ItemsSource="{Binding  ToDayTasks}" 
+                      AutoGenerateColumns="False" 
+                      CanUserResizeRows="False"
+                      CanUserResizeColumns="False" SelectedIndex="0" GridLinesVisibility="Horizontal"
+                      CanUserAddRows="False" FrozenColumnCount="3" HeadersVisibility="Column" 
+                      SelectedItem="{Binding SelectedTask}"
+                      
+                      >
+               
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Path= Title}" ClipboardContentBinding="{x:Null}" Header="Title" Width="160" />
-                    <DataGridTextColumn Binding="{Binding Path= Priority}" ClipboardContentBinding="{x:Null}" Header="Priority" Width="80"/>
-                    <DataGridTextColumn Binding="{Binding Path= State}" ClipboardContentBinding="{x:Null}" Header="Status" Width="80"/>
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= Title}" ClipboardContentBinding="{x:Null}" Header="Title" Width="160" />
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= Priority}" ClipboardContentBinding="{x:Null}" Header="Priority" Width="80"/>
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= State}" ClipboardContentBinding="{x:Null}" Header="Status" Width="80"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </ScrollViewer>
-        <!--<Content:TaskGridView Grid.Row="2"  Margin="0,0,0,0" VerticalAlignment="Top" />-->
-
+        
+ 
         <Controls:TaskViewControl Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top"
                                   IsEditable="False"
                                   TaskTitle="{Binding SelectedTaskTitle,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -62,6 +72,7 @@
             <Button Grid.Column="2" Content="Next" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}"  />
         </Grid>
         
+
     </Grid>
 
 </UserControl>

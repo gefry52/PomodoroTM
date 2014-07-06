@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\WorkRepositories\Pomodoro\Pomodoro\App.xaml
-111260825774
+12599539320
 3-378405296
-27852546930
-1975157244
-Assets\ModernUI.PomodoroTheme.xaml;Content\TaskGridView.xaml;Content\TimerPanel.xaml;Controls\TaskViewControl.xaml;Controls\ToDayInformationControl.xaml;MainWindow.xaml;Content\About.xaml;Content\SettingsAppearance.xaml;Pages\Home.xaml;Pages\Settings.xaml;Pages\Tasks.xaml;
+281619061207
+17684818224
+Assets\ModernUI.PomodoroTheme.xaml;Content\TaskGridView.xaml;Content\TimerPanel.xaml;Controls\PomodoroTimerControl.xaml;Controls\TaskViewControl.xaml;Controls\ToDayInformationControl.xaml;MainWindow.xaml;Content\About.xaml;Content\SettingsAppearance.xaml;Pages\Home.xaml;Pages\Settings.xaml;Pages\Tasks.xaml;
 
-False
+True
 
