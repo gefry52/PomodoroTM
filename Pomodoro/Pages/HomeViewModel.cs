@@ -22,7 +22,7 @@ namespace Pomodoro.Pages
         private Model.ITaskModel _currentTask;
         private IQueryable<Model.ITaskModel> _toDayTasks;
         private bool _runTimer = false;
-        
+        private int _selectedTaskIndex;
 
         public Model.ITaskModel SelectedTask
         {
@@ -41,7 +41,10 @@ namespace Pomodoro.Pages
 
         public String SelectedTaskTitle 
         {
-            get { return _selectedTask.Title; }
+            get
+            {
+                return (_selectedTask == null) ? " " : _selectedTask.Title;
+            }
             set {
                     _selectedTask.Title = value;
                     OnPropertyChanged("SelectedTask");
@@ -50,7 +53,7 @@ namespace Pomodoro.Pages
 
         public String SelectedTaskDescription
         {
-            get { return _selectedTask.Description; }
+            get {  return (_selectedTask == null) ? " " : _selectedTask.Description; }
             set
             {
                 _selectedTask.Description = value;
@@ -109,7 +112,8 @@ namespace Pomodoro.Pages
 
         public int SelectedTaskPriorytiIndex 
         {
-            get { return (int)_selectedTask.Priority; }
+            get
+            { return (_selectedTask == null) ? 0 : (int)_selectedTask.Priority;  }
             set 
             { 
                 _selectedTask.Priority = (Model.Priority)value;
@@ -119,7 +123,7 @@ namespace Pomodoro.Pages
 
         public int SelectedTaskPomodorosSpent 
         {
-            get { return _selectedTask.CountPomodoroUnit; }
+            get { return (_selectedTask == null) ? 0 : (int)_selectedTask.CountPomodoroUnit; }
             set 
             {
                 _selectedTask.CountPomodoroUnit = value;
@@ -130,10 +134,7 @@ namespace Pomodoro.Pages
         public bool SelectedTaskState 
         {
             get
-            {
-                if (_selectedTask.State == Model.State.done) return true;
-                else return false;
-            }
+            { return (_selectedTask == null) ? false : (_selectedTask.State == Model.State.done) ? true : false;}
             set
             {
                 if (value) _selectedTask.State = Model.State.done;
@@ -142,15 +143,25 @@ namespace Pomodoro.Pages
             }
         }
 
-
+        public int SelectedTaskIndex 
+        {
+            get { return (_selectedTask == null) ? 0 : _selectedTaskIndex; }
+            set 
+            {
+                _selectedTaskIndex = value;
+                OnPropertyChanged("SelectedTaskIndex");
+            }
+        }
 
         public HomeViewModel() 
         {
             //+++++++++++++++++
             Repository.ITaskRepository rep = new Repository.TaskRepository();
+            rep.SaveTask(new Model.TaskModel("first"));
             ToDayTasks = rep.GetTaskByDate(DateTime.Now);
             //++++++++++++++++++
-            SelectedTask = ToDayTasks.First<Model.ITaskModel>();
+           
+            SelectedTask = ToDayTasks.FirstOrDefault<Model.ITaskModel>();
         }
 
         public void OnPropertyChanged(string name)
@@ -163,23 +174,59 @@ namespace Pomodoro.Pages
             }
         }
 
-        
-        private ICommand _setSelectedTask
+
+        private ICommand _setCurrentTask
         {
-            get { return new RelayCommand(x => ExecuteSetSelectedTask()); }
+            get { return new RelayCommand(x => ExecuteSetCurrentTask()); }
 
         }
 
         public ICommand SetCurrentTask
         {
-            get { return _setSelectedTask; }
+            get { return _setCurrentTask; }
             set { }
         }
 
-        private void ExecuteSetSelectedTask()
+        private void ExecuteSetCurrentTask()
         {
             CurrentTask = SelectedTask;
             RunTimer = false;
+        }
+        /// <summary>
+        /// /////////////////
+        /// </summary>
+        private ICommand _moveNextTask
+        {
+            get { return new RelayCommand(x => ExecuteMoveNextTask()); }
+
+        }
+
+        public ICommand MoveNextTask
+        {
+            get { return _moveNextTask; }
+            set { }
+        }
+
+        private void ExecuteMoveNextTask()
+        {
+            SelectedTaskIndex++;
+        }
+        ///////////
+        private ICommand _movePreviosTask
+        {
+            get { return new RelayCommand(x => ExecuteMovePreviosTask()); }
+
+        }
+
+        public ICommand MovePreviosTask
+        {
+            get { return _movePreviosTask; }
+            set { }
+        }
+
+        private void ExecuteMovePreviosTask()
+        {
+            SelectedTaskIndex--;
         }
 
     }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,13 +15,14 @@ using System.Windows.Shapes;
 namespace Pomodoro.Content
 {
     /// <summary>
-    /// Логика взаимодействия для TaskGridView.xaml
+    /// Логика взаимодействия для TaskList.xaml
     /// </summary>
-    public partial class TaskGridView : UserControl
+    public partial class TaskList : UserControl
     {
-        public TaskGridView()
+        public TaskList()
         {
             InitializeComponent();
+            DataContext = new TaskListViewModel();
         }
     }
 }

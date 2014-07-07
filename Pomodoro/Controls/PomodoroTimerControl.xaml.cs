@@ -95,6 +95,8 @@ namespace Pomodoro.Controls
         private static void OnChangeRun(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
             _cTimer.Enabled = (bool)args.NewValue;
+            PomodoroTimerControl _control = (PomodoroTimerControl)sender;
+            _control.TimeIndication.Content = "00:00";
         }
 
         private void onTimerTick(object sender, CountdownTimer.CountdownTimerEventArgs args) 
@@ -117,7 +119,7 @@ namespace Pomodoro.Controls
             
             _cTimer.CountdownTimerTick += onTimerTick;
             _cTimer.CountdownTimeOver += onTimerOver;
-            Run = true;
+         
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

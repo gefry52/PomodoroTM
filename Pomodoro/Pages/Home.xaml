@@ -30,15 +30,16 @@
 			Grid.ColumnSpan="3"
 			HorizontalAlignment="Right" VerticalAlignment="Top" />
         
-        <Controls:PomodoroTimerControl  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Run="{Binding RunTimer, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Controls:PomodoroTimerControl  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Run="{Binding RunTimer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
             <DataGrid  Grid.Row="2" Grid.RowSpan="2" 
                        VerticalAlignment="Top" ItemsSource="{Binding  ToDayTasks}" 
                       AutoGenerateColumns="False" 
                       CanUserResizeRows="False"
-                      CanUserResizeColumns="False" SelectedIndex="0" GridLinesVisibility="Horizontal"
+                      CanUserResizeColumns="False"  GridLinesVisibility="Horizontal"
                       CanUserAddRows="False" FrozenColumnCount="3" HeadersVisibility="Column" 
                       SelectedItem="{Binding SelectedTask}"
+                      SelectedIndex="{Binding SelectedTaskIndex}"
                       
                       >
                
@@ -67,9 +68,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Previos" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}"  />
+            <Button Grid.Column="0" Content="Previos" Width="75" Command="{Binding MovePreviosTask, UpdateSourceTrigger=PropertyChanged}"  />
             <Button Grid.Column="1" Content="Set as current" Width="120" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}"  />
-            <Button Grid.Column="2" Content="Next" Width="75" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}"  />
+            <Button Grid.Column="2" Content="Next" Width="75" Command="{Binding MoveNextTask, UpdateSourceTrigger=PropertyChanged}"  />
         </Grid>
         
 

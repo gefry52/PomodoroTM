@@ -41,7 +41,6 @@ E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Pomodoro.exe.config
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.exe
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.pdb
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Assets\ModernUI.PomodoroTheme.baml
-E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TaskGridView.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\TaskViewControl.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\MainWindow.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\About.baml
@@ -49,7 +48,6 @@ E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\SettingsAppearance.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pages\Settings.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pages\Tasks.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\App.baml
-E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TaskGridView.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TimerPanel.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\TaskViewControl.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\MainWindow.g.cs
@@ -76,3 +74,11 @@ E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\ToDayInformationControl
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro.csprojResolveAssemblyReference.cache
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\PomodoroTimerControl.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\PomodoroTimerControl.g.cs
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TaskList.baml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TaskList.g.cs
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\AddTask.g.cs
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\AddTask.baml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\TimerSettingsControl.baml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TimerSettings.g.cs
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\TimerSettingsControl.g.cs
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TimerSettings.baml

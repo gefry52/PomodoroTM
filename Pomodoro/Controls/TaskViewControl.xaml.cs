@@ -39,7 +39,7 @@ namespace Pomodoro.Controls
                     "IsEditable",
                     typeof(bool),
                     typeof(TaskViewControl),
-                    new PropertyMetadata(false)
+                    new PropertyMetadata(false, new PropertyChangedCallback(OnChangeIsEditable))
                     );
 
         public static readonly DependencyProperty TaskPomodorosSpentProperty = DependencyProperty.Register(
@@ -133,13 +133,13 @@ namespace Pomodoro.Controls
             TaskViewControl _control = (TaskViewControl)sender;
             foreach (string item in (ObservableCollection<string>)args.NewValue) 
             {
-                _control.PriorytiComboBox.Items.Add(item);
+                _control.PriorityComboBox.Items.Add(item);
             }
         }
         private static void OnChangeSelectedIndex(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
             TaskViewControl _control = (TaskViewControl)sender;
-            _control.PriorytiComboBox.SelectedIndex = (int)args.NewValue;
+            _control.PriorityComboBox.SelectedIndex = (int)args.NewValue;
 
         }
 
@@ -155,7 +155,7 @@ namespace Pomodoro.Controls
             bool arg = (bool)args.NewValue;
             _control.DescriptionTextBox.IsEnabled = arg;
             _control.TitleTextBox.IsEnabled = arg;
-            _control.PriorytiComboBox.IsEnabled = arg;
+            _control.PriorityComboBox.IsEnabled = arg;
             _control.StateCheckBox.IsEnabled = arg;
         }
 
@@ -165,9 +165,16 @@ namespace Pomodoro.Controls
             _control.StateCheckBox.IsChecked = (bool) args.NewValue;
         }
 
+        
+
         public TaskViewControl()
         {
             InitializeComponent();
+            TitleTextBox.IsEnabled = IsEditable;
+            DescriptionTextBox.IsEnabled = IsEditable;
+            PriorityComboBox.IsEnabled = IsEnabled;
+            StateCheckBox.IsEnabled = IsEditable;
+
             
         }
     }
