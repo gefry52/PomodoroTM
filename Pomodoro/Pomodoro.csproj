@@ -87,13 +87,11 @@
       <DependentUpon>TaskList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\TaskListViewModel.cs" />
-    <Compile Include="Content\TimerPanel.xaml.cs">
-      <DependentUpon>TimerPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Content\TimerPanelViewModel.cs" />
     <Compile Include="Content\TimerSettings.xaml.cs">
       <DependentUpon>TimerSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\TimerSettingsViewModel.cs" />
+    <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controls\PomodoroTimerControl.xaml.cs">
       <DependentUpon>PomodoroTimerControl.xaml</DependentUpon>
     </Compile>
@@ -130,10 +128,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\TimerPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Content\TimerSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,7 +152,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Controlers\MonitorController.cs" />
+    <Compile Include="Controllers\MonitorController.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

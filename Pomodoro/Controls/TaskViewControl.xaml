@@ -20,11 +20,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <!-- Title text box -->
-        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="23"  Name="TitleTextBox" />
+        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="23"  Name="TitleTextBox" TextChanged="TitleTextBox_TextChanged" MaxLength="20" />
         <!-- Description text box -->
-        <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="123"  TextWrapping="Wrap"  VerticalAlignment="Top"   Name="DescriptionTextBox" />
+        <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="123"  TextWrapping="Wrap"  VerticalAlignment="Top"   Name="DescriptionTextBox" TextChanged="DescriptionTextBox_TextChanged" />
         <!-- Priority Item in  Combobox   -->
-        <ComboBox  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right"   VerticalAlignment="Top" Width="120" Name="PriorityComboBox"  />
+        <ComboBox  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right"   VerticalAlignment="Top" Width="120" Name="PriorityComboBox" SelectionChanged="PriorityComboBox_SelectionChanged"  />
         <!-- text labels -->
         <Label Grid.Row="0" Content="Title" HorizontalAlignment="Left"  VerticalAlignment="Top" />
         <Label Grid.Row="2" Content="Description" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="99" Height="16"/>

@@ -21,7 +21,8 @@ namespace Pomodoro.Content
     {
         public TimerSettings()
         {
-            InitializeComponent();
+            this.DataContext = new TimerSettingsViewModel();
+            InitializeComponent();       
         }
     }
 }

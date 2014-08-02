@@ -17,27 +17,29 @@ namespace Pomodoro.Model
         private Int32 _countPomodoroUnit;
         private DateTime _openingDate;
         private DateTime _closingDate;
+        private DateTime _executionDate;
         private ITaskStyle _style;
-         
+        
+
 
         
         
-        public TaskModel(string title,Priority priority = Priority.normal, string description="You forgot to add the description")
+        public TaskModel(string title, DateTime executionDate, Priority priority = Priority.normal, string description="You forgot to add the description")
         {
             _id = Guid.NewGuid().ToString();
             _title = title;
-            _state = State.done;
-            _countPomodoroUnit = 4;
+            _state = State.open;
+            _countPomodoroUnit = 0;
             _openingDate = DateTime.Now;
             _description = description;
             _priority = priority;
+            _executionDate = executionDate;
         }
 
         public String Id 
         {
             get { return _id; }
         }
-
         public State State 
         {
             get { return _state; }
@@ -72,6 +74,16 @@ namespace Pomodoro.Model
         {
             get{return _closingDate;}
             set { _closingDate = value; }
+        }
+        public DateTime ExecutionDate 
+        {
+            get { return _executionDate; }
+            set { _executionDate = value; }
+        }
+        public  string ExecutionDateStr
+        {
+            get { return _executionDate.ToShortDateString(); }
+            private set {}
         }
         public ITaskStyle Style 
         { 

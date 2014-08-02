@@ -19,6 +19,7 @@ namespace Pomodoro.Model
          Int32 CountPomodoroUnit { get; set; }
          DateTime OpeningDate { get; set; }
          DateTime ClosingDate { get; set; }
+         DateTime ExecutionDate { get; set; }
          ITaskStyle Style { get; set; }
     }
 }

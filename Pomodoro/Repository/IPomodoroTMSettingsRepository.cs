@@ -9,7 +9,7 @@ namespace Pomodoro.Repository
     interface IPomodoroTMSettingsRepository
     {
         Model.IPomodoroTMSettingsModel GetPomodoroTMSettings();
-        bool SavePomodoroTMSettings(Model.IPomodoroTMSettingsModel settings);
-
+        void SetPomodoroTMSettings(Model.IPomodoroTMSettingsModel settings);
+        bool Commit();
     }
 }

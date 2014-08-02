@@ -39,7 +39,7 @@ namespace Pomodoro.Controls
                    );
 
         public static readonly DependencyProperty LongBreakTimeProperty = DependencyProperty.Register(
-                   "LongBreakTimeTime",
+                   "LongBreakTime",
                    typeof(double),
                    typeof(PomodoroTimerControl),
                    new PropertyMetadata((double)1800000, new PropertyChangedCallback(OnChangeLongBreakTime))
@@ -102,14 +102,14 @@ namespace Pomodoro.Controls
         private void onTimerTick(object sender, CountdownTimer.CountdownTimerEventArgs args) 
         {
             _remainingTimeStr = ((int)(args.RemainingTime / 1000) / 60).ToString("D2") + ":" + ((int)(args.RemainingTime / 1000) % 60).ToString("D2");
-            TimeIndication.Dispatcher.Invoke(DispatcherPriority.Background,new Action(()=> TimeIndication.Content = _remainingTimeStr));
+            this.TimeIndication.Dispatcher.Invoke(DispatcherPriority.Background,new Action(()=> this.TimeIndication.Content = _remainingTimeStr));
             
         }
 
         private void onTimerOver(object sender, CountdownTimer.CountdownTimerEventArgs args)
         {
-            Run = false;
-       }
+            this.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() => this.Run = false));
+        }
 
 
         public PomodoroTimerControl()

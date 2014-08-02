@@ -24,11 +24,12 @@ namespace Pomodoro.Pages
     {
         public Home()
         {
-           
             InitializeComponent();
+            this.HomePage.Loaded += LoadEvent;
+        }
+        private void LoadEvent(object sender,EventArgs e) 
+        {
             this.DataContext = new HomeViewModel();
-            
-            
         }
 
         private void ModernButton_Click(object sender, RoutedEventArgs e)

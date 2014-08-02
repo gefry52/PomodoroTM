@@ -10,13 +10,21 @@ using System.Threading.Tasks;
 namespace Pomodoro.Repository
 {
     class PomodoroTMSettingsRepository : IPomodoroTMSettingsRepository
-    {
-        private Model.IPomodoroTMSettingsModel _settings;
+    { 
         const string FileName = "../settings.bin";
+        
+        private static readonly IPomodoroTMSettingsRepository GetInsatance = new PomodoroTMSettingsRepository();
 
-        public Model.IPomodoroTMSettingsModel GetPomodoroTMSettings()
+        public static IPomodoroTMSettingsRepository SettingInstance 
         {
+            get { return GetInsatance; }
+        }
 
+        private Model.IPomodoroTMSettingsModel _settings;
+
+
+        protected PomodoroTMSettingsRepository() 
+        {
             if (File.Exists(FileName))
             {
                 Stream TestFileStream = File.OpenRead(FileName);
@@ -24,23 +32,32 @@ namespace Pomodoro.Repository
                 _settings = (Model.IPomodoroTMSettingsModel)deserializer.Deserialize(TestFileStream);
                 TestFileStream.Close();
             }
-            else 
+            else
             {
                 _settings = new Model.PomodoroTMSettingsModel();
             }
-            return _settings;
- 
+           
         }
 
-        public bool SavePomodoroTMSettings(Model.IPomodoroTMSettingsModel settings) 
+        public Model.IPomodoroTMSettingsModel GetPomodoroTMSettings()
+        {
+            return _settings;
+        }
+
+        public void SetPomodoroTMSettings(Model.IPomodoroTMSettingsModel settings) 
+        {
+            _settings = settings;
+        }
+
+        public bool Commit() 
         {
             try
             {
                 Stream FileStream = File.Create(FileName);
                 BinaryFormatter serializer = new BinaryFormatter();
-                serializer.Serialize(FileStream, settings);
+                serializer.Serialize(FileStream, _settings);
                 FileStream.Close();
-                return true;
+                 return true;
             }
             catch { return false; }
         }

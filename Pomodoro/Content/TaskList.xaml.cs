@@ -22,7 +22,14 @@ namespace Pomodoro.Content
         public TaskList()
         {
             InitializeComponent();
-            DataContext = new TaskListViewModel();
+            this.Loaded += OnPageLoaded;
+            
+
+        }
+
+        private void OnPageLoaded(object sender, EventArgs e) 
+        {
+            this.DataContext = new TaskListViewModel();
         }
     }
 }

@@ -29,28 +29,35 @@
 			Click="ModernButton_Click"
 			Grid.ColumnSpan="3"
 			HorizontalAlignment="Right" VerticalAlignment="Top" />
-        
-        <Controls:PomodoroTimerControl  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Run="{Binding RunTimer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        
-            <DataGrid  Grid.Row="2" Grid.RowSpan="2" 
-                       VerticalAlignment="Top" ItemsSource="{Binding  ToDayTasks}" 
+
+        <Controls:PomodoroTimerControl Grid.Column="0" 
+                                       VerticalAlignment="Top" 
+                                       Run="{Binding RunTimer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                       Margin="0,15,0,0" Grid.RowSpan="2"
+                                       WorkTime="{Binding WorkTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                       ShortBreakTime="{Binding ShortBreakTime,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                       LongBreakTime="{Binding LongBreakTime,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                       />
+                                       
+        <DataGrid  Grid.Row="2" Grid.RowSpan="2" 
+                       VerticalAlignment="Top" ItemsSource="{Binding  ToDayTasks,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                       AutoGenerateColumns="False" 
                       CanUserResizeRows="False"
                       CanUserResizeColumns="False"  GridLinesVisibility="Horizontal"
-                      CanUserAddRows="False" FrozenColumnCount="3" HeadersVisibility="Column" 
+                      CanUserAddRows="False"  HeadersVisibility="Column" 
                       SelectedItem="{Binding SelectedTask}"
                       SelectedIndex="{Binding SelectedTaskIndex}"
                       
                       >
-               
-                <DataGrid.Columns>
-                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= Title}" ClipboardContentBinding="{x:Null}" Header="Title" Width="160" />
-                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= Priority}" ClipboardContentBinding="{x:Null}" Header="Priority" Width="80"/>
-                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= State}" ClipboardContentBinding="{x:Null}" Header="Status" Width="80"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        
- 
+
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= Title}"  Header="Title"  Width="220"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= Priority}"  Header="Priority" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= State}"  Header="Status" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
         <Controls:TaskViewControl Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top"
                                   IsEditable="False"
                                   TaskTitle="{Binding SelectedTaskTitle,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -72,7 +79,7 @@
             <Button Grid.Column="1" Content="Set as current" Width="120" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}"  />
             <Button Grid.Column="2" Content="Next" Width="75" Command="{Binding MoveNextTask, UpdateSourceTrigger=PropertyChanged}"  />
         </Grid>
-        
+
 
     </Grid>
 

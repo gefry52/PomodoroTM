@@ -177,5 +177,20 @@ namespace Pomodoro.Controls
 
             
         }
+
+        private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TaskDescription = this.DescriptionTextBox.Text;
+        }
+
+        private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TaskTitle = this.TitleTextBox.Text;
+        }
+
+        private void PriorityComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedPriorytiIndex = this.PriorityComboBox.SelectedIndex;
+        }
     }
 }

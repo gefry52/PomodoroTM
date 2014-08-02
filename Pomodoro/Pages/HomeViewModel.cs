@@ -18,6 +18,11 @@ namespace Pomodoro.Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private Repository.ITaskRepository _taskRepository = Repository.TaskRepository.TaskRepositoryInstance;
+        private Repository.IPomodoroTMSettingsRepository _settingRepository = Repository.PomodoroTMSettingsRepository.SettingInstance;
+        private Model.IPomodoroTMSettingsModel _setting;
+
+
         private Model.ITaskModel _selectedTask;
         private Model.ITaskModel _currentTask;
         private IQueryable<Model.ITaskModel> _toDayTasks;
@@ -91,9 +96,25 @@ namespace Pomodoro.Pages
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        public double WorkTime 
+        {
+            get { return (_setting != null) ? _setting.WorkTime : 160000; }
+            
+        }
+
+        public double ShortBreakTime 
+        {
+            get { return (_setting != null) ? _setting.ShortBreakTime : 160000; }
+        }
+
+        public double LongBreakTime
+        {
+            get { return (_setting != null) ? _setting.LongBreakTime : 160000; }
+           
+        }
+
+      
+        //
         public ObservableCollection<string> TaskPriorytiItem 
         {
             get 
@@ -155,12 +176,8 @@ namespace Pomodoro.Pages
 
         public HomeViewModel() 
         {
-            //+++++++++++++++++
-            Repository.ITaskRepository rep = new Repository.TaskRepository();
-            rep.SaveTask(new Model.TaskModel("first"));
-            ToDayTasks = rep.GetTaskByDate(DateTime.Now);
-            //++++++++++++++++++
-           
+            ToDayTasks = _taskRepository.GetTaskByDate(DateTime.Now);
+            _setting = _settingRepository.GetPomodoroTMSettings();
             SelectedTask = ToDayTasks.FirstOrDefault<Model.ITaskModel>();
         }
 
@@ -192,13 +209,11 @@ namespace Pomodoro.Pages
             CurrentTask = SelectedTask;
             RunTimer = false;
         }
-        /// <summary>
-        /// /////////////////
-        /// </summary>
+        
+        // <summary>
         private ICommand _moveNextTask
         {
             get { return new RelayCommand(x => ExecuteMoveNextTask()); }
-
         }
 
         public ICommand MoveNextTask
@@ -211,7 +226,8 @@ namespace Pomodoro.Pages
         {
             SelectedTaskIndex++;
         }
-        ///////////
+        
+        // <asd>
         private ICommand _movePreviosTask
         {
             get { return new RelayCommand(x => ExecuteMovePreviosTask()); }

@@ -19,9 +19,18 @@ namespace Pomodoro.Content
     /// </summary>
     public partial class AddTask : UserControl
     {
+        private Model.ITaskModel _task;
+
+    
         public AddTask()
         {
             InitializeComponent();
+            this.Loaded += OnPageLoaded;
+        }
+
+        private void OnPageLoaded(object sender,EventArgs e)
+        {
+            this.DataContext = new AddTaskViewModel();
         }
     }
 }

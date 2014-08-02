@@ -6,7 +6,15 @@
              xmlns:Pages="clr-namespace:Pomodoro.Pages" xmlns:Controls="clr-namespace:Pomodoro.Controls" x:Class="Pomodoro.Content.TimerSettings" 
              mc:Ignorable="d" 
            >
-    <Grid>
-        <Controls:TimerSettingsControl VerticalAlignment="Top" />
+    <Grid >
+        <Controls:TimerSettingsControl VerticalAlignment="Top"
+                                       ShortBreakTime="{Binding ShortBreakTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                       ShortBreakTimeMaximum="{Binding ShortBreaktime, Mode=OneTime}"
+                                       ShortBreakTimeMinimum="0"
+                                       LongBreakTime="{Binding LongBreakTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                       LongBreakTimeMaximum="{Binding LongBreakTime, Mode=OneTime}"
+                                       LongBreakTimeMinimum="0"
+                                       
+                                       IsTurnOnSound="{Binding IsTurnOnSound, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>

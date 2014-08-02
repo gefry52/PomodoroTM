@@ -7,8 +7,26 @@
              mc:Ignorable="d" 
       >
     <Grid>
-
-        <Controls:TaskViewControl IsEditable="True" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Select the date of the task"/>
+        <DatePicker  Grid.Row="0" Grid.Column="1" Name="executionDateTimePicker"  SelectedDate="{Binding ExDateTime, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <Controls:TaskViewControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsEditable="True" 
+                                  TaskTitle="{Binding Title, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                  TaskDescription="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                  TaskPriorytiItems="{Binding TaskPriorytiItem,Mode=OneTime}"
+                                  SelectedPriorytiIndex="{Binding SelectedTaskPriorytiIndex, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                  />
+        <Button Grid.Row="2" Grid.Column="1" Content="Save" VerticalAlignment="Bottom" Command="{Binding SaveTask}" HorizontalAlignment="Center" />
+        
 
     </Grid>
 </UserControl>

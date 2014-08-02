@@ -48,7 +48,6 @@ E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\SettingsAppearance.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pages\Settings.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pages\Tasks.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\App.baml
-E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TimerPanel.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\TaskViewControl.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\MainWindow.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\About.g.cs
@@ -61,7 +60,6 @@ E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro_Content.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\GeneratedInternalTypeHelper.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro_MarkupCompile.cache
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro_MarkupCompile.lref
-E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TimerPanel.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Pomodoro.exe
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\Pomodoro.pdb
 E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\FirstFloor.ModernUI.dll
