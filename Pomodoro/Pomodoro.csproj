@@ -91,6 +91,7 @@
       <DependentUpon>TimerSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\TimerSettingsViewModel.cs" />
+    <Compile Include="Controllers\INavigationController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controls\PomodoroTimerControl.xaml.cs">
       <DependentUpon>PomodoroTimerControl.xaml</DependentUpon>
@@ -112,6 +113,7 @@
     <Compile Include="Pages\Tasks.xaml.cs">
       <DependentUpon>Tasks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TasksViewModel.cs" />
     <Compile Include="Repository\ITaskRepository.cs" />
     <Compile Include="Repository\IPomodoroTMSettingsRepository.cs" />
     <Compile Include="Repository\TaskRepository.cs" />

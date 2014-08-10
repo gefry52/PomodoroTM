@@ -14,15 +14,18 @@ namespace Pomodoro.Content
 
     class TaskListViewModel : INotifyPropertyChanged
     {
+        //
         public event PropertyChangedEventHandler PropertyChanged;
 
         private Repository.ITaskRepository _repository = Repository.TaskRepository.TaskRepositoryInstance;
+
+        private Controllers.INavigationController _navigationController = Controllers.NavigationController.Instatnce;
 
         private IQueryable<Model.ITaskModel> _tasks;
 
         private Model.ITaskModel _selectedTask;
 
-
+        //
         public Model.ITaskModel SelectedTask 
         {
             get { return _selectedTask; }
@@ -65,7 +68,6 @@ namespace Pomodoro.Content
             }
         }
 
-
         private ICommand _deleteTask
         {
             get { return new RelayCommand(x => ExecuteDeleteTask()); }
@@ -98,8 +100,8 @@ namespace Pomodoro.Content
         private void ExecuteEditeTask()
         {
             if (_selectedTask == null) return;
-            Controllers.NavigationController.GoAddTask();
-          
+            _navigationController.GoEditTask(_selectedTask.Id);
         }
+        //
     }
 }

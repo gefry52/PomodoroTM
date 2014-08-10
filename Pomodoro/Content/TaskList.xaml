@@ -8,7 +8,7 @@
             
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -16,7 +16,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DataGrid     Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                      VerticalAlignment="Top" 
+                      VerticalAlignment="Center" 
                       ItemsSource="{Binding  Tasks, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                       AutoGenerateColumns="False" 
                       CanUserResizeRows="False"
@@ -27,12 +27,12 @@
                       >
 
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Path= OpeningDate}"  Header="Registration Date" Width="auto"/>
+                <DataGridTextColumn  Binding="{Binding Path= OpeningDate}"  Header="Registration Date" Width="auto" CanUserReorder="False" CanUserResize="True"/>
                 <DataGridTextColumn  Binding="{Binding Path= Title}"  Header="Title" Width="auto"/>
                 <DataGridTextColumn  Binding="{Binding Path= Priority}"  Header="Priority" Width="auto"/>
                 <DataGridTextColumn  Binding="{Binding Path= State}"  Header="Status" Width="auto"/>
-                <DataGridTextColumn Binding="{Binding Path=ExecutionDateStr }" Header="Execution Date" Width="auto"/>
-                <DataGridTextColumn Binding="{Binding Path=CountPomodoroUnit}" Header="Pomodoros Spent" Width="auto"/>          
+                <DataGridTextColumn  Binding="{Binding Path=ExecutionDateStr }" Header="Execution Date" Width="auto"/>
+                <DataGridTextColumn  Binding="{Binding Path=CountPomodoroUnit}" Header="Pomodoros Spent" Width="auto"/>          
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Row="1" Grid.Column="0"  Command="{Binding DeleteTask}" Content="Delete" VerticalAlignment="Bottom"/>

@@ -131,8 +131,10 @@ namespace Pomodoro.Controls
         private static void OnChangePriorytiItems(DependencyObject sender, DependencyPropertyChangedEventArgs args) 
         {
             TaskViewControl _control = (TaskViewControl)sender;
+            _control.PriorityComboBox.Items.Clear();
             foreach (string item in (ObservableCollection<string>)args.NewValue) 
             {
+               
                 _control.PriorityComboBox.Items.Add(item);
             }
         }

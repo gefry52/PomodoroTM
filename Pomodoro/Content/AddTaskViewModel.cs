@@ -14,8 +14,9 @@ namespace Pomodoro.Content
     {
         
         public event PropertyChangedEventHandler PropertyChanged;
-        Model.TaskModel _task;
+        Model.ITaskModel _task;
         Repository.ITaskRepository _repository = Repository.TaskRepository.TaskRepositoryInstance;
+        Controllers.INavigationController _navigationController = Controllers.NavigationController.Instatnce;
 
         public DateTime ExDateTime 
         {
@@ -71,12 +72,23 @@ namespace Pomodoro.Content
             }
             set {}
         }
-
+        //
         public AddTaskViewModel()
         {
-            _task = new Model.TaskModel("title",DateTime.Now);
+            if (_navigationController.Parameter != null) _task = _task = _repository.GetTaskById(_navigationController.Parameter.ToString());
+            else _task = new Model.TaskModel("title",DateTime.Now);
         }
 
+/*        public AddTaskViewModel(Model.ITaskModel task)
+        {
+            _task = task;
+        }
+
+        public AddTaskViewModel(string id)
+        {
+            
+        }
+        */
         public void OnPropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -89,7 +101,7 @@ namespace Pomodoro.Content
 
         private ICommand _saveTask
         {
-            get { return new RelayCommand(x => ExecuteSetCurrentTask()); }
+            get { return new RelayCommand(x => ExecuteSaveTask()); }
 
         }
 
@@ -99,10 +111,10 @@ namespace Pomodoro.Content
             set { }
         }
 
-        private void ExecuteSetCurrentTask()
+        private void ExecuteSaveTask()
         {
             _repository.AddTask(_task);
-            if (_repository.Commit()) Controllers.NavigationController.GoTasklist();
+            if (_repository.Commit()) _navigationController.GoTasklist();
 
                 //ToDo make modern ui messageBox
             else MessageBox.Show("Error! Failed to save tasks!");
