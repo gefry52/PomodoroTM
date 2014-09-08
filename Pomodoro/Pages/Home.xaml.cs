@@ -22,19 +22,32 @@ namespace Pomodoro.Pages
     /// </summary>
     public partial class Home : UserControl
     {
+        private bool _unloadedFlag = false;
+
         public Home()
         {
             InitializeComponent();
-            this.HomePage.Loaded += LoadEvent;
+            this.HomePage.Loaded += OnPageLoad;
         }
-        private void LoadEvent(object sender,EventArgs e) 
+        
+        private void  OnPageLoad(object sender,EventArgs e) 
         {
+            if (_unloadedFlag == true)
+            {
+                _unloadedFlag =false;
+                return;
+            }
             this.DataContext = new HomeViewModel();
+            _unloadedFlag = true;
         }
 
-        private void ModernButton_Click(object sender, RoutedEventArgs e)
+     
+
+        private void ToDayTasksList_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            
+            this.ToDayTasksList.Columns[0].Width = (Double)((this.ToDayTasksList.ActualWidth/100) * 50);
+            this.ToDayTasksList.Columns[1].Width = (Double)((this.ToDayTasksList.ActualWidth / 100) * 25);
+            this.ToDayTasksList.Columns[2].Width = (Double)((this.ToDayTasksList.ActualWidth / 100) * 25);
         }
 
       

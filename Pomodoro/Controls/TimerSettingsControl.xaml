@@ -19,16 +19,16 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Short Break Time"/>
-        <Label Name="ShortBreakTimeLabel" Grid.Row="0" Grid.Column="1" Content="{}" HorizontalAlignment="Right"/>
-        <Slider Name="ShortBreakTimeSlider" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ValueChanged="ShortBreakTimeSlider_ValueChanged" />
-        <Label Grid.Row="2" Grid.Column="0" Content="Long Break Time"/>
-        <Label Name="LongBreakTimeLabel" Grid.Row="2" Grid.Column="1" Content="{}" HorizontalAlignment="Right" />
-        <Slider Name="LongBreakTimeSlider" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" ValueChanged="LongBreakTimeSlider_ValueChanged" />
-        <Label Grid.Row="4" Grid.Column="0" Content="Turn on sound"/>
-        <CheckBox Name="TurnSoundCheckBox" Grid.Row="4" Grid.Column="1" Content="" Checked="TurnSoundCheckBox_Checked"/>
-        <Label Grid.Row="5" Grid.Column="0" Content="Turn off monitor" HorizontalAlignment="Left" Width="90"/>
-        <CheckBox Name="TurnMonitorCheckbox" Grid.Row="5" Grid.Column="1" Content="" Checked="TurnMonitorCheckbox_Checked"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Short Break Time" Margin="5,5,5,0"/>
+        <Label Name="ShortBreakTimeLabel" Grid.Row="0" Grid.Column="1" Content="{}" HorizontalAlignment="Right" Margin="5,5,5,0"/>
+        <Slider Name="ShortBreakTimeSlider" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ValueChanged="ShortBreakTimeSlider_ValueChanged" Margin="5,5,5,0" />
+        <Label Grid.Row="2" Grid.Column="0" Content="Long Break Time" Margin="5,15,5,0"/>
+        <Label Name="LongBreakTimeLabel" Grid.Row="2" Grid.Column="1" Content="{}" HorizontalAlignment="Right" Margin="5,15,5,0" />
+        <Slider Name="LongBreakTimeSlider" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" ValueChanged="LongBreakTimeSlider_ValueChanged" Margin="5,5,5,0" />
+        <Label Grid.Row="4" Grid.Column="0" Content="Turn on sound" Margin="5,15,5,0"/>
+        <CheckBox Name="TurnSoundCheckBox" Grid.Row="4" Grid.Column="1" Content="" Checked="TurnSoundCheckBox_Checked" Margin="5,15,5,0"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Turn off monitor" HorizontalAlignment="Left" Width="90" Margin="5,15,5,0"/>
+        <CheckBox Name="TurnMonitorCheckbox" Grid.Row="5" Grid.Column="1" Content="" Checked="TurnMonitorCheckbox_Checked" Margin="5,15,5,0"/>
 
     </Grid>
 </UserControl>

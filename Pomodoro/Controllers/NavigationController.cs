@@ -52,6 +52,7 @@ namespace Pomodoro.Controllers
        {
            _parameter = parameter;
            NavigationCommands.GoToPage.Execute("./Content/AddTask.xaml", null);
+           //_parameter = null;
        }
     }
 }

@@ -18,18 +18,18 @@ namespace Pomodoro.Repository
         /// </summary>
         const string TaskFileName = "./tasks.bin";
 
-        //
-
         private static readonly ITaskRepository GetInstatce = new TaskRepository();
-
         private List<Model.ITaskModel> _taskList;
 
+        /// <summary>
+        /// Get repository instance 
+        /// </summary>
         public static  ITaskRepository TaskRepositoryInstance  
         {
             get { return GetInstatce; }         
         }
         
-        //
+        
         protected TaskRepository() 
         {
             if (File.Exists(TaskFileName))
@@ -45,42 +45,65 @@ namespace Pomodoro.Repository
                 _taskList = new List<Model.ITaskModel>();
             }
         }
-        //
         
-        public List<Model.ITaskModel> GetTasks()
+        /// <summary>
+        /// return tasks list
+        /// </summary>
+        /// <returns>IList<ITaskmodel></returns>
+        public IList<Model.ITaskModel> GetTasks()
         {
             return _taskList;
         }
 
-        public IQueryable<Model.ITaskModel> GetTaskByDate(DateTime date) 
+        /// <summary>
+        /// return tasks list by date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns>IList<Model.ITaskModel></returns>
+        public IList<Model.ITaskModel> GetTasksByDate(DateTime date) 
         {  
             IQueryable<Model.ITaskModel> tasksByDate = from t in _taskList.AsQueryable<Model.ITaskModel>() 
                                                 where t.ExecutionDate.Date == date.Date
                                                 select t;
-            return tasksByDate;
+            return tasksByDate.ToList<Model.ITaskModel>();
         }
 
+        /// <summary>
+        /// return task by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>ITaskModel</returns>
         public Model.ITaskModel GetTaskById(string id) 
         {
-
-            IEnumerable<Model.ITaskModel> task = from t in _taskList.AsQueryable<Model.ITaskModel>()
+            IQueryable<Model.ITaskModel> task = from t in _taskList.AsQueryable<Model.ITaskModel>()
                                             where t.Id == id                           
                                             select  t;
             return task.FirstOrDefault();
         }
-
+        
+        /// <summary>
+        /// Insert task to task list 
+        /// </summary>
+        /// <param name="task">Model.ITaskModel</param>
         public void AddTask(Model.ITaskModel task) 
         {
-            _taskList.Remove(_taskList.Find(x => x.Id == task.Id));
-            _taskList.Add(task);
-           
+            _taskList.Remove(task);
+            _taskList.Add(task); 
         }
 
+        /// <summary>
+        /// Delete task from task list 
+        /// </summary>
+        /// <param name="task">Model.ITaskModel</param>
         public void DeleteTask(Model.ITaskModel task) 
-        {        
-            _taskList.Remove(_taskList.Find(x => x.Id == task.Id));
+        {
+            _taskList.Remove(task);
         }
 
+        /// <summary>
+        /// Save changes on repositories
+        /// </summary>
+        /// <returns>bool</returns>
         public bool Commit() 
         {
             try

@@ -19,20 +19,20 @@ namespace Pomodoro.Content
         private const string FontLarge = "large";
 
         // 9 accent colors from metro design principles
-        private Color[] accentColors = new Color[]{
-            Color.FromRgb(0xe5, 0x14, 0x00),   // red
-            Color.FromRgb(0x33, 0x99, 0xff),   // blue
-            Color.FromRgb(0x00, 0xab, 0xa9),   // teal
-            Color.FromRgb(0x33, 0x99, 0x33),   // green
-            Color.FromRgb(0x8c, 0xbf, 0x26),   // lime
-            Color.FromRgb(0xf0, 0x96, 0x09),   // orange
-            Color.FromRgb(0xff, 0x45, 0x00),   // orange red
-            Color.FromRgb(0xff, 0x00, 0x97),   // magenta
-            Color.FromRgb(0xa2, 0x00, 0xff),   // purple            
-        };
+      //  private Color[] accentColors = new Color[]{
+      //      Color.FromRgb(0xe5, 0x14, 0x00),   // red
+      //      Color.FromRgb(0x33, 0x99, 0xff),   // blue
+      //      Color.FromRgb(0x00, 0xab, 0xa9),   // teal
+      //      Color.FromRgb(0x33, 0x99, 0x33),   // green
+      //      Color.FromRgb(0x8c, 0xbf, 0x26),   // lime
+      //      Color.FromRgb(0xf0, 0x96, 0x09),   // orange
+      //      Color.FromRgb(0xff, 0x45, 0x00),   // orange red
+      //      Color.FromRgb(0xff, 0x00, 0x97),   // magenta
+      //      Color.FromRgb(0xa2, 0x00, 0xff),   // purple            
+      //  };
 
         // 20 accent colors from Windows Phone 8
-        /*private Color[] accentColors = new Color[]{
+        private Color[] accentColors = new Color[]{
             Color.FromRgb(0xa4, 0xc4, 0x00),   // lime
             Color.FromRgb(0x60, 0xa9, 0x17),   // green
             Color.FromRgb(0x00, 0x8a, 0x00),   // emerald
@@ -53,7 +53,7 @@ namespace Pomodoro.Content
             Color.FromRgb(0x64, 0x76, 0x87),   // steel
             Color.FromRgb(0x76, 0x60, 0x8a),   // mauve
             Color.FromRgb(0x87, 0x79, 0x4e),   // taupe
-        };*/
+        };
 
         private Color selectedAccentColor;
         private LinkCollection themes = new LinkCollection();

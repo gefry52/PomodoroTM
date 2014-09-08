@@ -100,7 +100,7 @@ namespace Pomodoro.Controls
             set { this.SetValue(TaskPriorytiItemsProperty, (ObservableCollection<string>)value); }
         }
 
-        public Int32 SelectedPriorytiIndex 
+        public Int32 SelectedPriorytiIndex
         {
             get { return (Int32) GetValue(SelectedPriorytiItemIndexProperty); }
             set { this.SetValue(SelectedPriorytiItemIndexProperty, value); }
@@ -108,12 +108,9 @@ namespace Pomodoro.Controls
 
         public bool TaskState 
         {
-
             get { return (bool)GetValue(TaskStateProperty); }
             set { this.SetValue(TaskStateProperty, value); }
         } 
-
-
 
         private static void OnChangeTitle(DependencyObject sender, DependencyPropertyChangedEventArgs args) 
         {
@@ -176,6 +173,7 @@ namespace Pomodoro.Controls
             DescriptionTextBox.IsEnabled = IsEditable;
             PriorityComboBox.IsEnabled = IsEnabled;
             StateCheckBox.IsEnabled = IsEditable;
+           
 
             
         }

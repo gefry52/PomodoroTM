@@ -8,9 +8,9 @@ namespace Pomodoro.Repository
 {
     interface ITaskRepository
     {
-        List<Model.ITaskModel> GetTasks();
+        IList<Model.ITaskModel> GetTasks();
         Model.ITaskModel GetTaskById(string id);
-        IQueryable<Model.ITaskModel> GetTaskByDate(DateTime date);
+        IList<Model.ITaskModel> GetTasksByDate(DateTime date);
         void AddTask(Model.ITaskModel task);
         void DeleteTask(Model.ITaskModel task);
         bool Commit();

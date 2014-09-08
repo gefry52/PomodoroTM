@@ -15,13 +15,15 @@ namespace Pomodoro.Repository
         
         private static readonly IPomodoroTMSettingsRepository GetInsatance = new PomodoroTMSettingsRepository();
 
+        /// <summary>
+        /// Get repositiry instatnce
+        /// </summary>
         public static IPomodoroTMSettingsRepository SettingInstance 
         {
             get { return GetInsatance; }
         }
 
         private Model.IPomodoroTMSettingsModel _settings;
-
 
         protected PomodoroTMSettingsRepository() 
         {
@@ -38,17 +40,29 @@ namespace Pomodoro.Repository
             }
            
         }
-
+        
+        /// <summary>
+        /// Get settings for pomodoro timer 
+        /// </summary>
+        /// <returns>Model.IPomodoroTMSettingsModel</returns>
         public Model.IPomodoroTMSettingsModel GetPomodoroTMSettings()
         {
             return _settings;
         }
 
+        /// <summary>
+        /// Set settings for pomodoro timers
+        /// </summary>
+        /// <param name="settings">Model.IPomodoroTMSettingsModel</param>
         public void SetPomodoroTMSettings(Model.IPomodoroTMSettingsModel settings) 
         {
             _settings = settings;
         }
 
+        /// <summary>
+        /// Save changes on repository 
+        /// </summary>
+        /// <returns>bool</returns>
         public bool Commit() 
         {
             try

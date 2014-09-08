@@ -13,6 +13,9 @@ namespace Pomodoro.Content
         private Repository.IPomodoroTMSettingsRepository _repository = Repository.PomodoroTMSettingsRepository.SettingInstance;
         private Model.IPomodoroTMSettingsModel _setting;
 
+        /// <summary>
+        ///  Get set work time interval
+        /// </summary>
         public double WorkTime 
         { 
             get { return _setting.WorkTime; }
@@ -23,6 +26,9 @@ namespace Pomodoro.Content
             }
         }
 
+        /// <summary>
+        /// Get set short break time interval 
+        /// </summary>
         public double ShortBreakTime 
         {
             get { return _setting.ShortBreakTime; }
@@ -34,6 +40,9 @@ namespace Pomodoro.Content
             }
         }
 
+        /// <summary>
+        /// Get set long break time interval
+        /// </summary>
         public double LongBreakTime 
         {
             get { return _setting.LongBreakTime; }
@@ -45,6 +54,9 @@ namespace Pomodoro.Content
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsTurnOnSound
         {
             get { return _setting.IsTurnOnSound; }
@@ -54,7 +66,9 @@ namespace Pomodoro.Content
                 OnPropertyChanged("IsTurnOnSound");
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsTurnOffMonitor 
         {
             get { return _setting.IsTurnOffMonitor; }
@@ -77,7 +91,6 @@ namespace Pomodoro.Content
             if (handler != null)
             {
                 handler(this, new PropertyChangedEventArgs(name));
-
             }
         }
 

@@ -14,10 +14,14 @@ namespace Pomodoro.Content
     {
         
         public event PropertyChangedEventHandler PropertyChanged;
+
         Model.ITaskModel _task;
         Repository.ITaskRepository _repository = Repository.TaskRepository.TaskRepositoryInstance;
         Controllers.INavigationController _navigationController = Controllers.NavigationController.Instatnce;
 
+        /// <summary>
+        /// Get or set date when must execute the task 
+        /// </summary>
         public DateTime ExDateTime 
         {
             get { return  _task.ExecutionDate; }
@@ -28,6 +32,9 @@ namespace Pomodoro.Content
             }
         }
 
+        /// <summary>
+        /// Get or set task title 
+        /// </summary>
         public string Title 
         {
             get { return _task.Title; } 
@@ -38,6 +45,9 @@ namespace Pomodoro.Content
             } 
         }
 
+        /// <summary>
+        /// Get or set task description 
+        /// </summary>
         public string Description 
         { 
             get { return _task.Description; } 
@@ -48,18 +58,25 @@ namespace Pomodoro.Content
             } 
         }
 
-        public int SelectedTaskPriorytiIndex
+        /// <summary>
+        /// Get or set index of selected priority
+        /// </summary>
+        public int SelectedTaskPriorityIndex
         {
             get
-            { return (_task == null) ? 0 : (int)_task.Priority; }
+            { return (_task == null) ? 1 : (int)_task.Priority; }
             set
             {
+                if (_task == null) return;
                 _task.Priority = (Model.Priority)value;
-                OnPropertyChanged("SelectedTask");
+                OnPropertyChanged("SelectedTaskPriorityIndex");  
             }
         }
 
-        public ObservableCollection<string> TaskPriorytiItem 
+        /// <summary>
+        /// Get collection priorities for task
+        /// </summary>
+        public ObservableCollection<string> TaskPriorityItem 
         {
             get 
             {
@@ -70,41 +87,35 @@ namespace Pomodoro.Content
                 }
                return _collection; 
             }
-            set {}
+            private set {}
         }
+
         //
         public AddTaskViewModel()
         {
-            if (_navigationController.Parameter != null) _task = _task = _repository.GetTaskById(_navigationController.Parameter.ToString());
-            else _task = new Model.TaskModel("title",DateTime.Now);
+           _task=(_navigationController.Parameter != null)?_repository.GetTaskById(_navigationController.Parameter.ToString()):new Model.TaskModel("title",DateTime.Now);
+           _navigationController.Parameter = null;
         }
 
-/*        public AddTaskViewModel(Model.ITaskModel task)
-        {
-            _task = task;
-        }
-
-        public AddTaskViewModel(string id)
-        {
-            
-        }
-        */
+       
         public void OnPropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
             {
                 handler(this, new PropertyChangedEventArgs(name));
-
             }
         }
 
+        #region // Save Task and go to the taskList page
         private ICommand _saveTask
         {
             get { return new RelayCommand(x => ExecuteSaveTask()); }
-
         }
 
+        /// <summary>
+        /// Get save task command
+        /// </summary>
         public ICommand SaveTask
         {
             get { return _saveTask; }
@@ -114,10 +125,14 @@ namespace Pomodoro.Content
         private void ExecuteSaveTask()
         {
             _repository.AddTask(_task);
-            if (_repository.Commit()) _navigationController.GoTasklist();
-
-                //ToDo make modern ui messageBox
+            if (_repository.Commit())
+            {
+                _task = null;
+                _navigationController.GoTasklist();
+            }
+            //ToDo make modern ui messageBox
             else MessageBox.Show("Error! Failed to save tasks!");
         }
+        #endregion
     }
 }

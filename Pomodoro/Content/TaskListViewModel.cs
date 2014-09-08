@@ -14,18 +14,15 @@ namespace Pomodoro.Content
 
     class TaskListViewModel : INotifyPropertyChanged
     {
-        //
         public event PropertyChangedEventHandler PropertyChanged;
-
         private Repository.ITaskRepository _repository = Repository.TaskRepository.TaskRepositoryInstance;
-
         private Controllers.INavigationController _navigationController = Controllers.NavigationController.Instatnce;
-
-        private IQueryable<Model.ITaskModel> _tasks;
-
+        private IList<Model.ITaskModel> _tasks;
         private Model.ITaskModel _selectedTask;
 
-        //
+        /// <summary>
+        /// Get or set selected task
+        /// </summary>
         public Model.ITaskModel SelectedTask 
         {
             get { return _selectedTask; }
@@ -36,38 +33,34 @@ namespace Pomodoro.Content
             }
 
         }
-
-        public ObservableCollection<Model.ITaskModel> Tasks
+        /// <summary>
+        /// Get or set tasks list
+        /// </summary>
+        public IList<Model.ITaskModel> Tasks
         {
-            get { return ToObservableCollection(_tasks); }
+            get { return _tasks; }
             set
             {
-               _tasks = value.AsQueryable<Model.ITaskModel>();
+               _tasks = value.ToList<Model.ITaskModel>();
                 OnPropertyChanged("Tasks");
             }
         }
 
         public TaskListViewModel() 
-        {
-            
-            Tasks = ToObservableCollection(_repository.GetTasks().AsQueryable<Model.ITaskModel>());
+        {  
+            Tasks = _repository.GetTasks();
         }
-
-        private ObservableCollection<Model.ITaskModel> ToObservableCollection(IQueryable<Model.ITaskModel> collection) 
-        {
-            return new ObservableCollection<Model.ITaskModel>(collection);
-        }
-
+        //
         public void OnPropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
             {
                 handler(this, new PropertyChangedEventArgs(name));
-
             }
         }
 
+        #region // delete selected task 
         private ICommand _deleteTask
         {
             get { return new RelayCommand(x => ExecuteDeleteTask()); }
@@ -81,27 +74,30 @@ namespace Pomodoro.Content
 
         private void ExecuteDeleteTask() 
         {
-            if (_selectedTask == null) return;
-            _repository.DeleteTask(_selectedTask);
-            Tasks = new ObservableCollection<Model.ITaskModel>(_repository.GetTasks());
+           if (_selectedTask == null) return;
+           _repository.DeleteTask(_selectedTask);
+           Tasks = _repository.GetTasks();
+           if (Tasks.Count >= 1) SelectedTask = Tasks[0];
+        }
+#endregion
+
+        #region // got to edit selected task
+        private ICommand _editTask
+        {
+            get { return new RelayCommand(x => ExecuteEditTask()); }
         }
 
-        private ICommand _editeTask
+        public ICommand EditTask
         {
-            get { return new RelayCommand(x => ExecuteEditeTask()); }
-        }
-
-        public ICommand EditeTask
-        {
-            get { return _editeTask; }
+            get { return _editTask; }
             private set { }
         }
 
-        private void ExecuteEditeTask()
+        private void ExecuteEditTask()
         {
             if (_selectedTask == null) return;
             _navigationController.GoEditTask(_selectedTask.Id);
         }
-        //
+#endregion
     }
 }

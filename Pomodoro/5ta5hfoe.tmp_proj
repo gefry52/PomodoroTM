@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84B8C66E-47C6-4B5F-87DA-AE73A66BB18A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pomodoro</RootNamespace>
+    <AssemblyName>Pomodoro</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\AddTask.xaml.cs">
+      <DependentUpon>AddTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\AddTaskViewModel.cs" />
+    <Compile Include="Content\TaskList.xaml.cs">
+      <DependentUpon>TaskList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\TaskListViewModel.cs" />
+    <Compile Include="Content\TimerSettings.xaml.cs">
+      <DependentUpon>TimerSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\TimerSettingsViewModel.cs" />
+    <Compile Include="Controllers\INavigationController.cs" />
+    <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Controls\PomodoroTimerControl.xaml.cs">
+      <DependentUpon>PomodoroTimerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TaskViewControl.xaml.cs">
+      <DependentUpon>TaskViewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TimerSettingsControl.xaml.cs">
+      <DependentUpon>TimerSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToDayInformationControl.xaml.cs">
+      <DependentUpon>ToDayInformationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ITaskStyle.cs" />
+    <Compile Include="Model\TaskStyle.cs" />
+    <Compile Include="Pages\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tasks.xaml.cs">
+      <DependentUpon>Tasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TasksViewModel.cs" />
+    <Compile Include="Repository\ITaskRepository.cs" />
+    <Compile Include="Repository\IPomodoroTMSettingsRepository.cs" />
+    <Compile Include="Repository\TaskRepository.cs" />
+    <Compile Include="Repository\PomodoroTMSettingsRepository.cs" />
+    <Compile Include="Controllers\MonitorController.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\SettingsAppearance.xaml.cs">
+      <DependentUpon>SettingsAppearance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\SettingsAppearanceViewModel.cs" />
+    <Compile Include="Model\IPomodoroTMSettingsModel.cs" />
+    <Compile Include="Model\ITaskModel.cs" />
+    <Compile Include="Model\PomodoroTMSettingsModel.cs" />
+    <Compile Include="Model\TaskModel.cs" />
+    <Compile Include="Pages\HomeViewModel.cs" />
+    <Compile Include="Pages\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="Resources\images-png.jpg" />
+    <Content Include="Resources\images.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ReferencePath Include="E:\WorkRepositories\Pomodoro\Pomodoro\bin\Debug\CountDownTimer.dll" />
+    <ReferencePath Include="E:\WorkRepositories\Pomodoro\packages\ModernUI.WPF.1.0.5\lib\net40\FirstFloor.ModernUI.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.CSharp.dll" />
+    <ReferencePath Include="E:\WorkRepositories\Pomodoro\packages\ModernUI.WPF.1.0.5\lib\net40\Microsoft.Windows.Shell.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\WindowsBase.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\AddTask.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TaskList.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TimerSettings.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\PomodoroTimerControl.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\TaskViewControl.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\TimerSettingsControl.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\ToDayInformationControl.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\MainWindow.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\About.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\SettingsAppearance.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pages\Home.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pages\Settings.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pages\Tasks.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\App.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Pomodoro_Content.g.cs" />
+    <Compile Include="E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+</Project>

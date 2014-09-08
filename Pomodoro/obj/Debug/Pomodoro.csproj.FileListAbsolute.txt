@@ -80,3 +80,5 @@ E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\TimerSettingsControl.ba
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TimerSettings.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\TimerSettingsControl.g.cs
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Content\TimerSettings.baml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\CurrentTaskControl.baml
+E:\WorkRepositories\Pomodoro\Pomodoro\obj\Debug\Controls\CurrentTaskControl.g.cs

@@ -19,18 +19,26 @@ namespace Pomodoro.Content
     /// </summary>
     public partial class AddTask : UserControl
     {
-        private Model.ITaskModel _task;
+        // 
+        private bool _unloadedFlag = false;
 
-    
         public AddTask()
         {
-            InitializeComponent();
-            this.Loaded += OnPageLoaded;
+            InitializeComponent();        
+            this.Loaded += OnPageLoaded;       
         }
 
         private void OnPageLoaded(object sender,EventArgs e)
         {
+            if (_unloadedFlag == true) 
+            {     
+                _unloadedFlag = false;
+                return; 
+            }
             this.DataContext = new AddTaskViewModel();
+            _unloadedFlag = true;
         }
+
+       
     }
 }

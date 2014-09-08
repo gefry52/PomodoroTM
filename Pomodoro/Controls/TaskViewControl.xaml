@@ -20,20 +20,20 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <!-- Title text box -->
-        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="23"  Name="TitleTextBox" TextChanged="TitleTextBox_TextChanged" MaxLength="20" />
+        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="23"  Name="TitleTextBox" TextChanged="TitleTextBox_TextChanged" MaxLength="20" Margin="5,5,5,0" />
         <!-- Description text box -->
-        <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="123"  TextWrapping="Wrap"  VerticalAlignment="Top"   Name="DescriptionTextBox" TextChanged="DescriptionTextBox_TextChanged" />
+        <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="123"  TextWrapping="Wrap"  VerticalAlignment="Top"   Name="DescriptionTextBox" TextChanged="DescriptionTextBox_TextChanged" Margin="5,5,5,0" />
         <!-- Priority Item in  Combobox   -->
-        <ComboBox  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right"   VerticalAlignment="Top" Width="120" Name="PriorityComboBox" SelectionChanged="PriorityComboBox_SelectionChanged"  />
+        <ComboBox  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right"   VerticalAlignment="Top" Width="120" Name="PriorityComboBox" SelectionChanged="PriorityComboBox_SelectionChanged" Margin="5"  />
         <!-- text labels -->
-        <Label Grid.Row="0" Content="Title" HorizontalAlignment="Left"  VerticalAlignment="Top" />
-        <Label Grid.Row="2" Content="Description" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="99" Height="16"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="Priority" HorizontalAlignment="Left"   VerticalAlignment="Top" RenderTransformOrigin="-1.536,0.375" Width="99" Height="16"/>
-        <Label Grid.Row="5" Content="Number of pomodoros spent" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="176" Height="16"/>
-        <Label Grid.Row="6" Grid.Column="0" Content="State" HorizontalAlignment="Left"   VerticalAlignment="Top" Width="99" Height="16"/>
+        <Label Grid.Row="0" Content="Title" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="5,5,5,0" />
+        <Label Grid.Row="2" Content="Description" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="99" Height="16" Margin="5,5,5,0"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Priority" HorizontalAlignment="Left"   VerticalAlignment="Top" RenderTransformOrigin="-1.536,0.375" Width="99" Height="16" Margin="5,5,5,0"/>
+        <Label Grid.Row="5" Content="Number of pomodoros spent" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="176" Height="16" Margin="5,5,5,0"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="State" HorizontalAlignment="Left"   VerticalAlignment="Top" Width="99" Height="16" Margin="5,5,5,0"/>
         <!-- Number of pomodoro spent -->
         <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right"   VerticalAlignment="Center" Width="63" Name="PomodoroSpentLabel"/>
         <!-- State CheckBox -->
-        <CheckBox Grid.Row="6" Grid.Column="1" Content="Is Done"    Name="StateCheckBox" HorizontalAlignment="Right" />
+        <CheckBox Grid.Row="6" Grid.Column="1" Content="Is Done"    Name="StateCheckBox" HorizontalAlignment="Right" Margin="5,5,5,0" />
     </Grid>
 </UserControl>

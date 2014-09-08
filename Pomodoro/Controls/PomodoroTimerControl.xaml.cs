@@ -115,8 +115,6 @@ namespace Pomodoro.Controls
         public PomodoroTimerControl()
         {
             InitializeComponent();
-            
-            
             _cTimer.CountdownTimerTick += onTimerTick;
             _cTimer.CountdownTimeOver += onTimerOver;
          
