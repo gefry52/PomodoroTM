@@ -63,17 +63,17 @@ namespace Pomodoro.Controls
         public string TaskTitle
         {
             get { return (string)GetValue(TaskTitleProperty); }
-            set { this.SetValue(TaskTitleProperty, value); }
+            set { this.SetValue(TaskTitleProperty, (string)value); }
         }
 
-        // Count pomodoro spent
+        //Get or set count pomodoro spent
         public string PomodoroSpent
         {
             get { return (string)GetValue(PomodoroSpentProperty); }
-            set { this.SetValue(PomodoroSpentProperty,value); }
+            set { this.SetValue(PomodoroSpentProperty,(string)value); }
         }
 
-        //State property for task
+        //Get or set State property for task
         public bool State
         {
             get { return (bool)GetValue(StateProperty); }

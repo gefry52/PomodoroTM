@@ -14,7 +14,7 @@
                                        LongBreakTime="{Binding LongBreakTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        LongBreakTimeMaximum="{Binding LongBreakTime, Mode=OneTime}"
                                        LongBreakTimeMinimum="0"
-                                       
+                                       IsTurnOffMonitor="{Binding IsTurnOffMonitor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                        IsTurnOnSound="{Binding IsTurnOnSound, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>

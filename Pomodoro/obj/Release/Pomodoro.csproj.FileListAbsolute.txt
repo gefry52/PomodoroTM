@@ -43,3 +43,7 @@ E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Content\AddTask.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Content\TimerSettings.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Controls\CurrentTaskControl.baml
 E:\WorkRepositories\Pomodoro\Pomodoro\obj\Release\Controls\CurrentTaskControl.g.cs
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\Microsoft.Expression.Interactions.dll
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\System.Windows.Interactivity.dll
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\Microsoft.Expression.Interactions.xml
+E:\WorkRepositories\Pomodoro\Pomodoro\bin\Release\System.Windows.Interactivity.xml

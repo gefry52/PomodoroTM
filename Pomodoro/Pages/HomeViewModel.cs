@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using CountdownTimer;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Media;
 
 namespace Pomodoro.Pages
 {
@@ -76,41 +76,6 @@ namespace Pomodoro.Pages
         }
         #endregion
 
-        #region // for combobox
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObservableCollection<string> TaskPriorytiItem 
-        {
-            get 
-            {
-                ObservableCollection<string> _collection = new ObservableCollection<string>();
-               foreach( var str in Enum.GetValues(typeof(Model.Priority)))
-                {
-                    _collection.Add(str.ToString());
-                }
-               return _collection; 
-            }
-            set {}
-        }
-         
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int SelectedTaskPriorytiIndex 
-        {
-            get
-            { return (_selectedTask == null) ? 0 : (int)_selectedTask.Priority;  }
-            set 
-            { 
-                _selectedTask.Priority = (Model.Priority)value;
-                OnPropertyChanged("SelectedTask"); 
-            }
-        }
-
-        #endregion
-
         /// <summary>
         /// Get or set selected task
         /// </summary>
@@ -145,6 +110,7 @@ namespace Pomodoro.Pages
                     OnPropertyChanged("SelectedTask");
                 }
         }
+
         /// <summary>
         ///  Get or set selected task description
         /// </summary>
@@ -157,6 +123,7 @@ namespace Pomodoro.Pages
                 OnPropertyChanged("SelectedTaskDescription");
             }
         }
+
         /// <summary>
         ///  Get selected task priority
         /// </summary>
@@ -169,6 +136,7 @@ namespace Pomodoro.Pages
                 
             }
         }
+
         /// <summary>
         /// Get or set  time interval spent for selected task
         /// </summary>
@@ -181,6 +149,7 @@ namespace Pomodoro.Pages
                 OnPropertyChanged("SelectedTask");
             }
         }
+
         /// <summary>
         /// Get or set selected task state
         /// </summary>
@@ -195,6 +164,7 @@ namespace Pomodoro.Pages
                 OnPropertyChanged("SelectedTask");
             }
         }
+
         // <summary>
         /// Get or set index of selected task
         /// </summary>
@@ -239,6 +209,8 @@ namespace Pomodoro.Pages
             {
                 _currentTask.Title = value;
                 OnPropertyChanged("CurrentTask");
+                OnPropertyChanged("CurrentTaskTaskDescription");
+                OnPropertyChanged("CurrentTaskPomodorosSpent");
             }
         }
         /// <summary>
@@ -250,7 +222,7 @@ namespace Pomodoro.Pages
             set
             {
                 _currentTask.Description = value;
-                OnPropertyChanged("CurrentTask");
+                OnPropertyChanged("CurrentTaskTaskDescription");
             }
         }
         /// <summary>
@@ -262,7 +234,7 @@ namespace Pomodoro.Pages
             set
             {
                 _currentTask.CountPomodoroUnit = Convert.ToInt32(value);
-                OnPropertyChanged("CurrentTask");
+                OnPropertyChanged("CurrentTaskPomodorosSpent");
             }
         }
         /// <summary>
@@ -274,7 +246,7 @@ namespace Pomodoro.Pages
             set 
             { 
                 if(_currentTask!=null) _currentTask.State = (value == true) ? Model.State.done : Model.State.open;
-                OnPropertyChanged("CurrentTask");
+                OnPropertyChanged("CurrentTaskState");
             }
         }
 
@@ -372,6 +344,65 @@ namespace Pomodoro.Pages
             _currentTask.State=Model.State.done;
             // reload tasks list from repository after change current task state 
             ToDayTasks = _taskRepository.GetTasksByDate(DateTime.Now);
+            OnPropertyChanged("SelectedTaskState");
+        }
+        #endregion
+
+        #region//End of time work 
+        private ICommand _workTimeOverCommand
+        {
+            get { return new RelayCommand(x => ExecuteWorkTimeOver()); }
+        }
+
+        public ICommand WorkTimeOverCommand
+        {
+            get { return _workTimeOverCommand; }
+            set { }
+        }
+
+        private void ExecuteWorkTimeOver()
+        {
+            if (_currentTask == null) return;
+            _currentTask.CountPomodoroUnit += 1;
+            OnPropertyChanged("CurrentTaskPomodorosSpent");
+            OnPropertyChanged("SelectedTaskPomodorosSpent");
+            if (_setting.IsTurnOffMonitor) Controllers.MonitorController.OffMonitor();
+        }
+        #endregion
+
+        #region //End of time short break 
+        private ICommand _shortBreakTimeOverCommand
+        {
+            get { return new RelayCommand(x => ExecuteShortBreakTimeOver()); }
+        }
+
+        public ICommand ShortBreakTimeOverCommand
+        {
+            get { return _shortBreakTimeOverCommand; }
+            set { }
+        }
+
+        private void ExecuteShortBreakTimeOver()
+        {
+            if (_setting.IsTurnOffMonitor) Controllers.MonitorController.OnMonitor();
+        }
+        #endregion
+
+        #region //End of time long break
+        private ICommand _longBreakTimeOverCommand
+        {
+            get { return new RelayCommand(x => ExecuteLongBreakTimeOver()); }
+        }
+
+        public ICommand LongBreakTimeOverCommand
+        {
+            get { return _longBreakTimeOverCommand; }
+            set { }
+        }
+
+        private void ExecuteLongBreakTimeOver()
+        {
+            
         }
         #endregion
 

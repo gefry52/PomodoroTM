@@ -49,6 +49,7 @@ namespace Pomodoro.Content
             set 
             { 
                 _setting.LongBreakTime = value;
+                _repository.SetPomodoroTMSettings(_setting);
                 OnPropertyChanged("LongBreakTime");
             }
 
@@ -62,7 +63,8 @@ namespace Pomodoro.Content
             get { return _setting.IsTurnOnSound; }
             set 
             { 
-                _setting.IsTurnOnSound = value;
+                _setting.IsTurnOnSound = (bool)value;
+                _repository.SetPomodoroTMSettings(_setting);
                 OnPropertyChanged("IsTurnOnSound");
             }
         }
@@ -74,7 +76,8 @@ namespace Pomodoro.Content
             get { return _setting.IsTurnOffMonitor; }
             set 
             { 
-                _setting.IsTurnOffMonitor = value;
+                _setting.IsTurnOffMonitor = (bool)value;
+                _repository.SetPomodoroTMSettings(_setting);
                 OnPropertyChanged("IsTurnOffMonitor");
             }
         }
@@ -82,7 +85,6 @@ namespace Pomodoro.Content
         public TimerSettingsViewModel() 
         {
             _setting = _repository.GetPomodoroTMSettings();
-
         }
 
         public void OnPropertyChanged(string name)

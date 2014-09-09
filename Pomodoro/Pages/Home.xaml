@@ -6,6 +6,7 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:Content="clr-namespace:Pomodoro.Content"
              xmlns:Controls="clr-namespace:Pomodoro.Controls"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              x:Class="Pomodoro.Pages.Home"
              mc:Ignorable="d"   
              x:Name="HomePage"
@@ -28,7 +29,19 @@
                                        WorkTime="{Binding WorkTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                        ShortBreakTime="{Binding ShortBreakTime,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                                        LongBreakTime="{Binding LongBreakTime,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
-                                       />
+                                       >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ShortBreakTimeOver">
+                    <i:InvokeCommandAction Command="{Binding ShortBreakTimeOverCommand}" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="WorkTimeOver">
+                    <i:InvokeCommandAction Command="{Binding WorkTimeOverCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            
+        </Controls:PomodoroTimerControl>
+        
+        
 
         <Controls:ToDayInformationControl Grid.Column="1"  Width="auto" Margin="10,15,-10,5" Grid.RowSpan="2" HorizontalAlignment="Left"/>
         

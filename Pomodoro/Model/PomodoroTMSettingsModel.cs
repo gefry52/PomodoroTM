@@ -15,8 +15,8 @@ namespace Pomodoro.Model
         private bool _isTurnOnSound;
         private bool _isActiveProgressRing;
 
-
-        public PomodoroTMSettingsModel(double worktime = 1500000, double shortBreakTime = 300000, double longBreakTime = 1800000,bool isActiveProgressRing = true, bool isTurnOffMonitor = false, bool isTurnOnSound = false) 
+        //double worktime = 1500000, double shortBreakTime = 300000, double longBreakTime = 1800000,bool isActiveProgressRing = true, bool isTurnOffMonitor = false, bool isTurnOnSound = false
+        public PomodoroTMSettingsModel(double worktime = 1500000, double shortBreakTime = 300000, double longBreakTime = 1800000, bool isActiveProgressRing = true, bool isTurnOffMonitor = false, bool isTurnOnSound = false) 
         {
             _workTime = worktime;
             _shortBreakTime = shortBreakTime;

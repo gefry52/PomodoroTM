@@ -19,8 +19,8 @@ namespace Pomodoro.Controls
     /// </summary>
     public partial class TimerSettingsControl : UserControl
     {
-        
-            public static readonly DependencyProperty ShortBreakTimeProperty = DependencyProperty.Register(
+        #region // dependency property
+        public static readonly DependencyProperty ShortBreakTimeProperty = DependencyProperty.Register(
                        "ShortBreakTime",
                        typeof(double),
                        typeof(TimerSettingsControl),
@@ -73,12 +73,12 @@ namespace Pomodoro.Controls
             public static readonly DependencyProperty IsTurnOffMonitorProperty = DependencyProperty.Register(
                         "IsTurnOffMonitor",
                         typeof(bool),
-                        typeof(TaskViewControl),
+                        typeof(TimerSettingsControl),
                         new PropertyMetadata(false, new PropertyChangedCallback(OnIsTurnOffMonitor))
                         );
+        #endregion
+        
 
-           
-            /// 
             public double ShortBreakTime
             {
                 get { return (double)GetValue(ShortBreakTimeProperty) ; }
@@ -130,7 +130,7 @@ namespace Pomodoro.Controls
                 get { return (bool)GetValue(IsTurnOffMonitorProperty); }
                 set { this.SetValue(IsTurnOffMonitorProperty, value); }
             }
-            ///
+           
             public TimerSettingsControl() 
             {
                 InitializeComponent();
