@@ -55,6 +55,27 @@ namespace Pomodoro.Controls
                    typeof(PomodoroTimerControl),
                    new PropertyMetadata(false, new PropertyChangedCallback(OnChangeRun))
                    );
+
+        public static readonly DependencyProperty RunButtonStrProperty = DependencyProperty.Register(
+            "RunButtonStr",
+            typeof(string),
+            typeof(PomodoroTimerControl),
+            new PropertyMetadata((string)"Start",new PropertyChangedCallback(OnChangeRunButtonStr))
+            );
+
+        public static readonly DependencyProperty ShortBreakButtonStrProperty = DependencyProperty.Register(
+            "ShortBreakButtonStr",
+            typeof(string),
+            typeof(PomodoroTimerControl),
+            new PropertyMetadata((string)"Short Break", new PropertyChangedCallback(OnChangeShortBreakButtonStr))
+            );
+
+        public static readonly DependencyProperty LongBreakButtonStrProperty = DependencyProperty.Register(
+            "LongBreakButtonStr",
+            typeof(string),
+            typeof(PomodoroTimerControl),
+            new PropertyMetadata((string)"Long Break", new PropertyChangedCallback(OnChangeLognBreakButtonStr))
+            );
         #endregion
 
         #region //Routed event
@@ -114,6 +135,26 @@ namespace Pomodoro.Controls
         {
             get { return (bool)GetValue(RunProperty); }
             set { this.SetValue(RunProperty, value); }
+        }
+
+
+
+        public string RunButtonStr 
+        {
+            get { return (string)GetValue(RunButtonStrProperty); }
+            set { this.SetValue(RunButtonStrProperty, (string)value); }
+        }
+
+        public string ShortBreakButtonStr
+        {
+            get { return (string)GetValue(ShortBreakButtonStrProperty); }
+            set { this.SetValue(ShortBreakButtonStrProperty, (string)value); }
+        }
+
+        public string LongBreakButtonStr
+        {
+            get { return (string)GetValue(LongBreakButtonStrProperty); }
+            set { this.SetValue(LongBreakButtonStrProperty, (string)value); }
         }
         #endregion
 
@@ -178,6 +219,24 @@ namespace Pomodoro.Controls
             PomodoroTimerControl _control = (PomodoroTimerControl)sender;
             _control.TimeIndication.Content = "00:00";
         }
+
+        private static void OnChangeRunButtonStr(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            PomodoroTimerControl _control = (PomodoroTimerControl)sender;
+            _control.RunButton.Content = (string)args.NewValue;
+        }
+
+        private static void OnChangeShortBreakButtonStr(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            PomodoroTimerControl _control = (PomodoroTimerControl)sender;
+            _control.ShortBreakButton.Content = (string)args.NewValue;
+        }
+
+        private static void OnChangeLognBreakButtonStr(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            PomodoroTimerControl _control = (PomodoroTimerControl)sender;
+            _control.LongBreakButton.Content = (string)args.NewValue;
+        }
         #endregion
 
 
@@ -223,6 +282,11 @@ namespace Pomodoro.Controls
             InitializeComponent();
             _cTimer.CountdownTimerTick += onTimerTick;
             _cTimer.CountdownTimeOver += onTimerOver;
+            this.RunButtonStr = "dfghjh";
+            this.LongBreakButtonStr = "gdf";
+            this.ShortBreakButtonStr = "gfdsf";
+           // this.ShortBreakButton.Content = "s";
+           // this.LongBreakButton.Content = "l";
          
         }
 

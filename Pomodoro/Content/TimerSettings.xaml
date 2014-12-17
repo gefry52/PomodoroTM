@@ -3,18 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:Pages="clr-namespace:Pomodoro.Pages" xmlns:Controls="clr-namespace:Pomodoro.Controls" x:Class="Pomodoro.Content.TimerSettings" 
+             xmlns:Pages="clr-namespace:Pomodoro.Pages"  
+             x:Class="Pomodoro.Content.TimerSettings" 
              mc:Ignorable="d" 
+             xmlns:c ="clr-namespace:Pomodoro.PagesStrings"
            >
-    <Grid >
-        <Controls:TimerSettingsControl VerticalAlignment="Top"
-                                       ShortBreakTime="{Binding ShortBreakTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       ShortBreakTimeMaximum="{Binding ShortBreaktime, Mode=OneTime}"
-                                       ShortBreakTimeMinimum="0"
-                                       LongBreakTime="{Binding LongBreakTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       LongBreakTimeMaximum="{Binding LongBreakTime, Mode=OneTime}"
-                                       LongBreakTimeMinimum="0"
-                                       IsTurnOffMonitor="{Binding IsTurnOffMonitor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                       IsTurnOnSound="{Binding IsTurnOnSound, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-    </Grid>
+    <UserControl.Resources>
+        <c:SettingsPageStr x:Key="uiStrings"/>
+    </UserControl.Resources>
+    <Grid  VerticalAlignment="Top" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="{Binding Source={StaticResource ResourceKey=uiStrings}, Path=ShortBreakTimeStr, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,0"/>
+            <Label Name="ShortBreakTimeLabel" Grid.Row="0" Grid.Column="1" Content="{}" HorizontalAlignment="Right" Margin="5,5,5,0"/>
+            <Slider Name="ShortBreakTimeSlider" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Margin="5,5,5,0" />
+        <Label Grid.Row="2" Grid.Column="0" Content="{Binding Source={StaticResource ResourceKey=uiStrings}, Path=LongBreakTimeStr, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Margin="5,15,5,0"/>
+            <Label Name="LongBreakTimeLabel" Grid.Row="2" Grid.Column="1" Content="{}" HorizontalAlignment="Right" Margin="5,15,5,0" />
+            <Slider Name="LongBreakTimeSlider" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  Margin="5,5,5,0" />
+        <Label Grid.Row="4" Grid.Column="0" Content="{Binding Source={StaticResource ResourceKey=uiStrings}, Path=TurnSoundOnStr, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Margin="5,15,5,0"/>
+            <CheckBox Name="TurnSoundCheckBox" Grid.Row="4" Grid.Column="1" Content=""  Margin="5,15,5,0"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="{Binding Source={StaticResource ResourceKey=uiStrings}, Path=TurnMonitorOffStr, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"  Margin="5,15,5,0"/>
+            <CheckBox Name="TurnMonitorCheckbox" Grid.Row="5" Grid.Column="1" Content=""  Margin="5,15,5,0"/>
+
+        </Grid>
 </UserControl>

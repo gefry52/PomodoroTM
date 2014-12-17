@@ -8,6 +8,8 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Media;
+using System.Globalization;
+using System.Threading;
 
 namespace Pomodoro.Pages
 {
@@ -15,6 +17,8 @@ namespace Pomodoro.Pages
     
     {    
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private DateChangedNotifier _dateChangeNotifer = new DateChangedNotifier();
 
         private Repository.ITaskRepository _taskRepository = Repository.TaskRepository.TaskRepositoryInstance;
         private Repository.IPomodoroTMSettingsRepository _settingRepository = Repository.PomodoroTMSettingsRepository.SettingInstance;
@@ -24,7 +28,9 @@ namespace Pomodoro.Pages
         private IList<Model.ITaskModel> _toDayTasks;
         private bool _runTimer = false;
         private int _selectedTaskIndex;
-       
+        //
+        private CultureInfo _culture = Thread.CurrentThread.CurrentCulture;
+       //
         /// <summary>
         /// Get or set list of tasks who mast been execute today
         /// </summary>
@@ -252,11 +258,14 @@ namespace Pomodoro.Pages
 
         #endregion
 
+        
+
         public HomeViewModel() 
         {
             ToDayTasks = _taskRepository.GetTasksByDate(DateTime.Now);
             _setting = _settingRepository.GetPomodoroTMSettings();
             SelectedTask = ToDayTasks.FirstOrDefault<Model.ITaskModel>();
+            _dateChangeNotifer.DayChanged += onDateChange;
         }
 
         public void OnPropertyChanged(string name)
@@ -405,6 +414,12 @@ namespace Pomodoro.Pages
             
         }
         #endregion
+
+        private void onDateChange(object sender, DayChangedEventArgs arg)
+        {
+            OnPropertyChanged("TodayDayName");
+            OnPropertyChanged("TodayStr");
+        }
 
     }
 }

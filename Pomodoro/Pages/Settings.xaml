@@ -4,15 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:c ="clr-namespace:Pomodoro.PagesStrings"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <c:SettingsPageStr x:Key="uiStrings"/>
+    </UserControl.Resources>
+    
     <Grid>
 
-        <mui:ModernTab Layout="List" SelectedSource="/Content/TimerSettings.xaml">
+        <mui:ModernTab Name="List" Layout="List" SelectedSource="/Content/TimerSettings.xaml">
             <mui:ModernTab.Links>
-                <mui:Link DisplayName="timer settings" Source="/Content/TimerSettings.xaml" />
-                <mui:Link DisplayName="appearance" Source="/Content/SettingsAppearance.xaml" />
-                <mui:Link DisplayName="about" Source="/Content/About.xaml" />
+       <!-- Based on the fact that  "Binding" can only be set in 
+            parameter DependencyProperty object DependencyObject.
+            And property "DisplayName" type of "Link" is not DependencyObject.
+            The properties will be assigned in the code. And change the 
+            will occur with a event CultureChanged type of CultureUIController-->
+                <mui:Link DisplayName="" Source="/Content/TimerSettings.xaml" />
+                <mui:Link DisplayName="" Source="/Content/SettingsAppearance.xaml" />
+                <mui:Link DisplayName="" Source="/Content/About.xaml" />
                 
             </mui:ModernTab.Links>
         </mui:ModernTab>

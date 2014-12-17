@@ -49,7 +49,7 @@ namespace Pomodoro.Content
             this.Taskslist.Columns[2].Width = (Double)((this.Taskslist.ActualWidth / 100) * 14);
             this.Taskslist.Columns[3].Width = (Double)((this.Taskslist.ActualWidth / 100) * 14);
             this.Taskslist.Columns[4].Width = (Double)((this.Taskslist.ActualWidth / 100) * 16);
-            this.Taskslist.Columns[5].Width = (Double)((this.Taskslist.ActualWidth / 100) * 16);
+            //this.Taskslist.Columns[5].Width = (Double)((this.Taskslist.ActualWidth / 100) * 16);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Pomodoro.Pages
             {
                 _unloadedFlag =false;
                 return;
-            }
+            }    
             this.DataContext = new HomeViewModel();
             _unloadedFlag = true;
         }

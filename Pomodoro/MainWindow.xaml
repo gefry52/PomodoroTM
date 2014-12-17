@@ -9,21 +9,26 @@
                   ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                   TextOptions.TextFormattingMode="Display" 
                   UseLayoutRounding="True" 
-                  WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow"  
+                  WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" FontFamily="Tahoma"  
                 >
 
 
     <mui:ModernWindow.MenuLinkGroups>
-        <mui:LinkGroup DisplayName="Pomodoro Time Manager" >
+        <mui:LinkGroup DisplayName="Pomodoro Timer" >
 
         </mui:LinkGroup>
     </mui:ModernWindow.MenuLinkGroups>
 
 
-    <mui:ModernWindow.TitleLinks>
-        <mui:Link DisplayName="Pomodoro" Source="/Pages/Home.xaml"/>
-        <mui:Link DisplayName="Tasks"   Source="/Pages/Tasks.xaml" />
-        <mui:Link DisplayName="Settings"  Source="/Pages/Settings.xaml" />
+    <mui:ModernWindow.TitleLinks >
+        <!--// Based on the fact that  "Binding" can only be set in 
+            // parameter DependencyProperty object DependencyObject.
+            // And property "DisplayName" type of "Link" is not DependencyObject.
+            // The properties will be assigned in the code. And change the 
+            // will occur with a event CultureChanged type of CultureUIController.-->
+        <mui:Link DisplayName="" Source="/Pages/Home.xaml"/>
+        <mui:Link DisplayName=""   Source="/Pages/Tasks.xaml" />
+        <mui:Link DisplayName=""  Source="/Pages/Settings.xaml" />
     </mui:ModernWindow.TitleLinks>
 
 </mui:ModernWindow>

@@ -20,9 +20,28 @@ namespace Pomodoro.Pages
     /// </summary>
     public partial class Settings : UserControl
     {
+        Controllers.CultureUIController _cultureController= Controllers.CultureUIController.Instatnce;
+
         public Settings()
         {
             InitializeComponent();
+            // Based on the fact that  "Binding" can only be set in 
+            // parameter DependencyProperty object DependencyObject.
+            // And property "DisplayName" type of "Link" is not DependencyObject.
+            // The properties will be assigned in the code. And change the 
+            // will occur with a event CultureChanged type of CultureUIController.
+            List.Links[0].DisplayName = Pomodoro.Resources.UIStrings.TimerSettingStr;
+            List.Links[1].DisplayName = Pomodoro.Resources.UIStrings.AppearanceStr;
+            List.Links[2].DisplayName = Pomodoro.Resources.UIStrings.AboutStr;
+
+            _cultureController.CultureChanged += OnChangeCulture;
+        }
+
+        private void OnChangeCulture (object o,Controllers.CultureEventArgs e) 
+        {
+            List.Links[0].DisplayName = Pomodoro.Resources.UIStrings.TimerSettingStr;
+            List.Links[1].DisplayName = Pomodoro.Resources.UIStrings.AppearanceStr;
+            List.Links[2].DisplayName = Pomodoro.Resources.UIStrings.AboutStr;
         }
     }
 }

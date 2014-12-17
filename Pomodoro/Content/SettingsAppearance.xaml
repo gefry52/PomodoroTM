@@ -3,12 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:Pomodoro.PagesStrings"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <c:SettingsPageStr x:Key="uiStrings"/>
+    </UserControl.Resources>
+
     <Grid>
-        <ScrollViewer>
+        <ScrollViewer Margin="0,10,0,-10">
             <StackPanel x:Name="Panel" MinWidth="150">
-                <TextBlock Text="APPEARANCE" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+                <TextBlock Text="{Binding Source={StaticResource uiStrings}, Path=AppearanceStr}" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
 
                 <ListBox ItemsSource="{Binding AccentColors}"
                          SelectedItem="{Binding SelectedAccentColor, Mode=TwoWay}"
@@ -37,13 +42,14 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Theme:" VerticalAlignment="Center" Margin="0,0,16,4" />
+                    <TextBlock Text="{Binding Source={StaticResource ResourceKey=uiStrings}, Path=ThemeStr}" VerticalAlignment="Bottom" Margin="0,0,16,7" />
                     <ComboBox Grid.Column="1" ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" DisplayMemberPath="DisplayName" VerticalAlignment="Center" Margin="0,0,0,4"  />
 
-                    <TextBlock Grid.Row="1" Text="Font size:" VerticalAlignment="Center" Margin="0,0,16,0" />
-                    <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FontSizes}" SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="2" Text="{Binding Source={StaticResource ResourceKey=uiStrings}, Path=LanguageStr}" VerticalAlignment="Center" Margin="0,0,16,4" />
+                    <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Languages,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="0,0,0,4" />
                 </Grid>
             </StackPanel>
         </ScrollViewer>

@@ -7,10 +7,16 @@
              xmlns:Content="clr-namespace:Pomodoro.Content"
              xmlns:Controls="clr-namespace:Pomodoro.Controls"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:c ="clr-namespace:Pomodoro.PagesStrings"
              x:Class="Pomodoro.Pages.Home"
              mc:Ignorable="d"   
              x:Name="HomePage"
              >
+    
+    <UserControl.Resources>
+        <c:HomePageStr x:Key="uiStrings"/>
+    </UserControl.Resources>
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"  />
@@ -23,56 +29,81 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+       
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="ShortBreakTimeOver">
+                <i:InvokeCommandAction Command="{Binding ShortBreakTimeOverCommand}" />
+            </i:EventTrigger>
+            <i:EventTrigger EventName="WorkTimeOver">
+                <i:InvokeCommandAction Command="{Binding WorkTimeOverCommand}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        
+        <Controls:PomodoroTimerControl Grid.Row="0"  Grid.Column="0" VerticalAlignment="Top"
+            Run="{Binding RunTimer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+			WorkTime="{Binding WorkTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+			ShortBreakTime="{Binding ShortBreakTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+			LongBreakTime="{Binding LongBreakTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            RunButtonStr ="{Binding Source={StaticResource uiStrings}, Path=StartStr,UpdateSourceTrigger=PropertyChanged}"
+            ShortBreakButtonStr="{Binding Source={StaticResource uiStrings}, Path=ShortBreakStr, UpdateSourceTrigger=PropertyChanged}"
+            LongBreakButtonStr="{Binding Source={StaticResource uiStrings}, Path=LongBreakStr, UpdateSourceTrigger=PropertyChanged}"
+         
+    
+        />
 
-        <Controls:PomodoroTimerControl Grid.Row="0"  Grid.Column="0" VerticalAlignment="Top"                                      
-                                       Run="{Binding RunTimer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                       WorkTime="{Binding WorkTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                       ShortBreakTime="{Binding ShortBreakTime,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
-                                       LongBreakTime="{Binding LongBreakTime,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
-                                       >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="ShortBreakTimeOver">
-                    <i:InvokeCommandAction Command="{Binding ShortBreakTimeOverCommand}" />
-                </i:EventTrigger>
-                <i:EventTrigger EventName="WorkTimeOver">
-                    <i:InvokeCommandAction Command="{Binding WorkTimeOverCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-            
-        </Controls:PomodoroTimerControl>
-        
-        
 
-        <Controls:ToDayInformationControl Grid.Column="1"  Width="auto" Margin="10,15,-10,5" Grid.RowSpan="2" HorizontalAlignment="Left"/>
-        
-        <Controls:CurrentTaskControl 
-                                    Grid.Row="2"
-                                    Grid.Column="2"
-                                    Margin="0,0,0,5"
-                                    TaskTitle="{Binding CurrentTaskTitle,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                    PomodoroSpent="{Binding CurrentTaskPomodorosSpent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    State="{Binding CurrentTaskState, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                         
-                                    Command="{Binding ClickCurrentTaskDone,UpdateSourceTrigger=PropertyChanged}"
-                                    />
-        
-        <Label Content="You have a 3 tasks to day" Grid.Row="2" VerticalAlignment="Bottom" Margin="5" FontSize="18"/>
+
+        <Grid Grid.Column="1"  Width="auto" Margin="10,15,-10,5" Grid.RowSpan="2" HorizontalAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"  />
+                <RowDefinition Height="auto" />
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" FontSize="22" Content="{Binding Source={StaticResource uiStrings},Path=TodayDayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Row="1" Grid.Column="1"   x:Name="DateLabel" HorizontalAlignment="Right" Content="{Binding Source={StaticResource uiStrings},Path=TodayStr, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+
+
+        <Grid Grid.Row="2" Grid.Column="1" Margin="5,5,5,5" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="{Binding Source={StaticResource uiStrings}, Path=CurrentTaskStr, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,5" FontSize="18"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="{Binding CurrentTaskTitle,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="{Binding Source={StaticResource uiStrings},Path=TaskSpentPomodorosStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentTaskPomodorosSpent,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"/>
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="ButtonDone" Content="{Binding Source={StaticResource uiStrings},Path=DoneStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding ClickCurrentTaskDone}"/>
+        </Grid>
         <Border BorderBrush="LightGray" Grid.Row="3" Opacity="0.5" Grid.Column="0" Grid.ColumnSpan="2"  BorderThickness="1,1,1,1" CornerRadius="5" Padding="5" Margin="0,0,0,5" />
-        <DataGrid     Name="ToDayTasksList"
-                      ItemsSource="{Binding  ToDayTasks,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-                      AutoGenerateColumns="False" 
-                      CanUserResizeRows="False"
-                      CanUserResizeColumns="False"  
-                      CanUserAddRows="False" 
-                      SelectedItem="{Binding SelectedTask}"
-                      SelectedIndex="{Binding SelectedTaskIndex}"
-                      GridLinesVisibility="Horizontal"
-                      HeadersVisibility="Column" Grid.Row="3" SelectionMode="Single" Margin="5,7,5,0" SizeChanged="ToDayTasksList_SizeChanged"
+        <DataGrid
+			ItemsSource="{Binding ToDayTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+			AutoGenerateColumns="False" 
+			CanUserResizeRows="False"
+			CanUserResizeColumns="False"  
+			CanUserAddRows="False" 
+			SelectedItem="{Binding SelectedTask}"
+			SelectedIndex="{Binding SelectedTaskIndex}"
+			GridLinesVisibility="Horizontal"
+			HeadersVisibility="Column"
+            Grid.Row="3" SelectionMode="Single" Margin="5,7,5,0" SizeChanged="ToDayTasksList_SizeChanged"
+            Name="ToDayTasksList"
+             
                      >
 
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= Title}"  Header="Title" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= Priority}"  Header="Priority" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path= State}"  Header="Status" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Title}"  Header="{Binding Source={StaticResource uiStrings},Path=TaskTitleStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Priority}"  Header="{Binding Source={StaticResource uiStrings},Path=TaskPriorityStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding State}"  Header="{Binding Source={StaticResource uiStrings},Path=TaskStateStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -92,34 +123,34 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <!-- Title Label -->
-            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="23" Content="{Binding SelectedTaskTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  Name="TitleTextBox"   Margin="15,0" />
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="23" Content="{Binding SelectedTaskTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  x:Name="TitleTextBox"   Margin="15,0" />
             <!-- Description text box -->
-            <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="123" Text="{Binding SelectedTaskDescription , Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"  VerticalAlignment="Top" IsEnabled="False"  Name="DescriptionTextBox" Margin="15,5,5,0"  />
+            <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="123" Text="{Binding SelectedTaskDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"  VerticalAlignment="Top" IsEnabled="False"  x:Name="DescriptionTextBox" Margin="15,5,5,0"  />
             <!-- Priority Label   -->
-            <Label  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right"  Content="{Binding SelectedTaskPrioryti, Mode=OneWay, UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120" Name="PriorityComboBox" Margin="5,5,5,0"   />
+            <Label  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right"  Content="{Binding SelectedTaskPrioryti, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" x:Name="PriorityComboBox" Margin="5,5,5,0"   />
             <!-- text labels -->
-            <Label Grid.Row="0" Content="Title:" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="5,5,5,0" />
-            <Label Grid.Row="2" Content="Description" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="99" Height="16" Margin="5,4,5,0"/>
-            <Label Grid.Row="4" Grid.Column="0" Content="Priority" HorizontalAlignment="Left"   VerticalAlignment="Top" RenderTransformOrigin="-1.536,0.375" Width="99" Height="16" Margin="5,5,5,0"/>
-            <Label Grid.Row="5" Content="Number of pomodoros spent" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="176" Height="16" Margin="5,5,5,0"/>
-            <Label Grid.Row="6" Grid.Column="0" Content="State" HorizontalAlignment="Left"   VerticalAlignment="Top" Width="99" Height="16" Margin="5,5,5,0"/>
+            <Label Grid.Row="0" Content="{Binding Source={StaticResource uiStrings},Path=TaskTitleStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="5,5,5,0" />
+            <Label Grid.Row="2" Content="{Binding Source={StaticResource uiStrings},Path=TaskDescriptionStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="99" Height="16" Margin="5,4,5,0"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="{Binding TaskPriorityStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"   VerticalAlignment="Top" RenderTransformOrigin="-1.536,0.375" Width="99" Height="16" Margin="5,5,5,0"/>
+            <Label Grid.Row="5" Content="{Binding Source={StaticResource uiStrings},Path=TaskSpentPomodorosStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="176" Height="16" Margin="5,5,5,0"/>
+            <Label Grid.Row="6" Grid.Column="0" Content="{Binding Source={StaticResource uiStrings},Path=TaskStateStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"   VerticalAlignment="Top" Width="99" Height="16" Margin="5,5,5,0"/>
             <!-- Number of pomodoro spent -->
-            <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right"  Content="{Binding SelectedTaskPomodorosSpent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="63" Name="PomodoroSpentLabel"/>
+            <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right"  Content="{Binding TodayDayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="63" x:Name="PomodoroSpentLabel"/>
             <!-- State CheckBox -->
-            <CheckBox Grid.Row="6" Grid.Column="1" Content="Is Done"  IsChecked="{Binding SelectedTaskState, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  Name="StateCheckBox" HorizontalAlignment="Right" IsEnabled="False" Margin="5,5,5,0" />
+            <CheckBox Grid.Row="6" Grid.Column="1" Content="{Binding Source={StaticResource uiStrings}, Path=DoneStr,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  IsChecked="{Binding SelectedTaskState, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Right" IsEnabled="False" Margin="5,5,5,0" />
         </Grid>
-        
 
-        
-        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+
+
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  VerticalAlignment="Bottom" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Previos" Width="75" Command="{Binding MovePreviosTask, UpdateSourceTrigger=PropertyChanged}"  />
-            <Button Grid.Column="1" Content="Set as current" Width="120" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}"  />
-            <Button Grid.Column="2" Content="Next" Width="75" Command="{Binding MoveNextTask, UpdateSourceTrigger=PropertyChanged}"  />
+            <Button Grid.Column="0" Content="{Binding Source={StaticResource uiStrings},Path=PreviosStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding MovePreviosTask, UpdateSourceTrigger=PropertyChanged}"  />
+            <Button Grid.Column="1" Content="{Binding Source={StaticResource uiStrings},Path=CurrentSetStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding SetCurrentTask, UpdateSourceTrigger=PropertyChanged}"  />
+            <Button Grid.Column="2" Content="{Binding Source={StaticResource uiStrings},Path=NextStr,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding MoveNextTask, UpdateSourceTrigger=PropertyChanged}"  />
         </Grid>
 
 

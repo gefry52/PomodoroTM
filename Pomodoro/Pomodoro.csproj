@@ -71,6 +71,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>C:\Users\gefry\Documents\Visual Studio 2013\Projects\TestWpfApp\packages\Extended.Wpf.Toolkit.2.3\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -93,26 +96,22 @@
       <DependentUpon>TimerSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\TimerSettingsViewModel.cs" />
+    <Compile Include="Controllers\CultureUIController.cs" />
+    <Compile Include="Controllers\DateChangedNotifier.cs" />
     <Compile Include="Controllers\INavigationController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\SoundController.cs" />
-    <Compile Include="Controls\CurrentTaskControl.xaml.cs">
-      <DependentUpon>CurrentTaskControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\PomodoroTimerControl.xaml.cs">
       <DependentUpon>PomodoroTimerControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\TaskViewControl.xaml.cs">
-      <DependentUpon>TaskViewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TimerSettingsControl.xaml.cs">
       <DependentUpon>TimerSettingsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ToDayInformationControl.xaml.cs">
-      <DependentUpon>ToDayInformationControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\ITaskStyle.cs" />
     <Compile Include="Model\TaskStyle.cs" />
+    <Compile Include="PagesStrings\HomePageStr.cs" />
+    <Compile Include="PagesStrings\SettingsPageStr.cs" />
+    <Compile Include="PagesStrings\TasksPageStr.cs" />
     <Compile Include="Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -123,6 +122,11 @@
     <Compile Include="Repository\IPomodoroTMSettingsRepository.cs" />
     <Compile Include="Repository\TaskRepository.cs" />
     <Compile Include="Repository\PomodoroTMSettingsRepository.cs" />
+    <Compile Include="Resources\UIStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UIStrings.resx</DependentUpon>
+    </Compile>
     <Page Include="Assets\ModernUI.PomodoroTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,23 +143,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\CurrentTaskControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\PomodoroTimerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TaskViewControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\TimerSettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\ToDayInformationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +205,14 @@
     <Content Include="favicon.ico" />
     <Content Include="Resources\images-png.jpg" />
     <Content Include="Resources\images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\UIStrings.en-US.resx" />
+    <EmbeddedResource Include="Resources\UIStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UIStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UIStrings.ru-RU.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

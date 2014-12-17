@@ -59,6 +59,15 @@ namespace Pomodoro.Content
         }
 
         /// <summary>
+        /// Get number of pomodoro spent
+        /// </summary>
+        public string PomodoroSpent 
+        {
+            get { return _task.CountPomodoroUnit.ToString(); }
+        }
+
+
+        /// <summary>
         /// Get or set index of selected priority
         /// </summary>
         public int SelectedTaskPriorityIndex
@@ -69,14 +78,14 @@ namespace Pomodoro.Content
             {
                 if (_task == null) return;
                 _task.Priority = (Model.Priority)value;
-                OnPropertyChanged("SelectedTaskPriorityIndex");  
+                OnPropertyChanged("SelectedTaskPriorityIndex");
             }
         }
 
         /// <summary>
         /// Get collection priorities for task
         /// </summary>
-        public ObservableCollection<string> TaskPriorityItem 
+        public ObservableCollection<string> TaskPriorityItems
         {
             get 
             {
@@ -84,10 +93,23 @@ namespace Pomodoro.Content
                foreach( var str in Enum.GetValues(typeof(Model.Priority)))
                 {
                     _collection.Add(str.ToString());
+                    
                 }
                return _collection; 
             }
             private set {}
+        }
+
+        public bool IsDone 
+        {
+            get
+            { return (_task == null) ? false : (_task.State == Model.State.done) ? true : false; }
+            set
+            {
+                if (value) _task.State = Model.State.done;
+                else _task.State = Model.State.open;
+                OnPropertyChanged("IsDone");
+            }
         }
 
         //

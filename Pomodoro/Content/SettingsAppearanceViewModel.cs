@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Pomodoro.Content
@@ -17,6 +20,8 @@ namespace Pomodoro.Content
     {
         private const string FontSmall = "small";
         private const string FontLarge = "large";
+
+        private Controllers.CultureUIController _cultureUIController = Controllers.CultureUIController.Instatnce;
 
         // 9 accent colors from metro design principles
       //  private Color[] accentColors = new Color[]{
@@ -32,7 +37,7 @@ namespace Pomodoro.Content
       //  };
 
         // 20 accent colors from Windows Phone 8
-        private Color[] accentColors = new Color[]{
+        private Color[] _accentColors = new Color[]{
             Color.FromRgb(0xa4, 0xc4, 0x00),   // lime
             Color.FromRgb(0x60, 0xa9, 0x17),   // green
             Color.FromRgb(0x00, 0x8a, 0x00),   // emerald
@@ -55,36 +60,48 @@ namespace Pomodoro.Content
             Color.FromRgb(0x87, 0x79, 0x4e),   // taupe
         };
 
-        private Color selectedAccentColor;
-        private LinkCollection themes = new LinkCollection();
-        private Link selectedTheme;
-        private string selectedFontSize;
+
+        private CultureInfo[] _cultureInfo = new CultureInfo[] 
+        {
+            CultureInfo.GetCultureInfo("en-US"),
+            CultureInfo.GetCultureInfo("ru-RU"),
+           // CultureInfo.GetCultureInfo("uk-UA")
+        };
+
+        private Color _selectedAccentColor;
+        private LinkCollection _themes = new LinkCollection();
+        private Link _selectedTheme;
+        private string _selectedFontSize;
+        private string _selectedLanguage;
 
         public SettingsAppearanceViewModel()
         {
             // add the default themes
-            this.themes.Add(new Link { DisplayName = "dark", Source = AppearanceManager.DarkThemeSource });
-            this.themes.Add(new Link { DisplayName = "light", Source = AppearanceManager.LightThemeSource });
+            this._themes.Add(new Link { DisplayName = "dark", Source = AppearanceManager.DarkThemeSource });
+            this._themes.Add(new Link { DisplayName = "light", Source = AppearanceManager.LightThemeSource });
        
 
             this.SelectedFontSize = AppearanceManager.Current.FontSize == FontSize.Large ? FontLarge : FontSmall;
             SyncThemeAndColor();
 
             AppearanceManager.Current.PropertyChanged += OnAppearanceManagerPropertyChanged;
+            
+            this.SelectedLanguage = Thread.CurrentThread.CurrentCulture.NativeName;
         }
 
         private void SyncThemeAndColor()
         {
             // synchronizes the selected viewmodel theme with the actual theme used by the appearance manager.
-            this.SelectedTheme = this.themes.FirstOrDefault(l => l.Source.Equals(AppearanceManager.Current.ThemeSource));
+            this.SelectedTheme = this._themes.FirstOrDefault(l => l.Source.Equals(AppearanceManager.Current.ThemeSource));
 
             // and make sure accent color is up-to-date
             this.SelectedAccentColor = AppearanceManager.Current.AccentColor;
+            
         }
 
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "ThemeSource" || e.PropertyName == "AccentColor")
+            if (e.PropertyName == "ThemeSource" || e.PropertyName == "AccentColor" )
             {
                 SyncThemeAndColor();
             }
@@ -92,7 +109,7 @@ namespace Pomodoro.Content
 
         public LinkCollection Themes
         {
-            get { return this.themes; }
+            get { return this._themes; }
         }
 
         public string[] FontSizes
@@ -100,19 +117,32 @@ namespace Pomodoro.Content
             get { return new string[] { FontSmall, FontLarge }; }
         }
 
+        public string[] Languages
+        {
+            get {
+                var names = new List<string>();
+                
+                foreach (var culture in _cultureInfo)
+                {
+                    names.Add(culture.NativeName);
+                }
+                return names.ToArray();
+            }
+        }
+
         public Color[] AccentColors
         {
-            get { return this.accentColors; }
+            get { return this._accentColors; }
         }
 
         public Link SelectedTheme
         {
-            get { return this.selectedTheme; }
+            get { return this._selectedTheme; }
             set
             {
-                if (this.selectedTheme != value)
+                if (this._selectedTheme != value)
                 {
-                    this.selectedTheme = value;
+                    this._selectedTheme = value;
                     OnPropertyChanged("SelectedTheme");
 
                     // and update the actual theme
@@ -123,12 +153,12 @@ namespace Pomodoro.Content
 
         public string SelectedFontSize
         {
-            get { return this.selectedFontSize; }
+            get { return this._selectedFontSize; }
             set
             {
-                if (this.selectedFontSize != value)
+                if (this._selectedFontSize != value)
                 {
-                    this.selectedFontSize = value;
+                    this._selectedFontSize = value;
                     OnPropertyChanged("SelectedFontSize");
 
                     AppearanceManager.Current.FontSize = value == FontLarge ? FontSize.Large : FontSize.Small;
@@ -136,14 +166,31 @@ namespace Pomodoro.Content
             }
         }
 
-        public Color SelectedAccentColor
+        public string SelectedLanguage
         {
-            get { return this.selectedAccentColor; }
+            get { return this._selectedLanguage; }
             set
             {
-                if (this.selectedAccentColor != value)
+                if (this._selectedLanguage != value)
                 {
-                    this.selectedAccentColor = value;
+                    this._selectedLanguage = value;
+                    OnPropertyChanged("SelectedLanguage");
+                    OnPropertyChanged("Languages");
+                    _cultureUIController.ChangeCulture(_cultureInfo.First(x => x.NativeName == _selectedLanguage));
+                  
+                
+                }
+            }
+        }
+
+        public Color SelectedAccentColor
+        {
+            get { return this._selectedAccentColor; }
+            set
+            {
+                if (this._selectedAccentColor != value)
+                {
+                    this._selectedAccentColor = value;
                     OnPropertyChanged("SelectedAccentColor");
 
                     AppearanceManager.Current.AccentColor = value;

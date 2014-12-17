@@ -26,6 +26,8 @@ namespace Pomodoro.Content
 
             // create and assign the appearance view model
             this.DataContext = new SettingsAppearanceViewModel();
+
+
         }
 
         

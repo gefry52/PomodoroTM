@@ -25,13 +25,36 @@ namespace Pomodoro
     /// </summary>
     public partial class MainWindow : ModernWindow
     {
+        private Controllers.CultureUIController _cultureController = Controllers.CultureUIController.Instatnce;
+
         public MainWindow()
         {
+           // Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+           // this.Language = System.Windows.Markup.XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
             InitializeComponent();
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            
+            // Based on the fact that  "Binding" can only be set in 
+            // parameter DependencyProperty object DependencyObject.
+            // And property "DisplayName" type of "Link" is not DependencyObject.
+            // The properties will be assigned in the code. And change the 
+            // will occur with a event CultureChanged type of CultureUIController
+            SetUIStrings();
+            _cultureController.CultureChanged += OnCultureChange;
+            
         }
 
+        private void SetUIStrings() 
+        {
+            this.TitleLinks[0].DisplayName = Pomodoro.Resources.UIStrings.TimerStr;
+            this.TitleLinks[1].DisplayName = Pomodoro.Resources.UIStrings.TasksStr;
+            this.TitleLinks[2].DisplayName = Pomodoro.Resources.UIStrings.SettingsStr;
+            this.MenuLinkGroups[0].DisplayName = Pomodoro.Resources.UIStrings.PomodoroTimer;
+        }
+
+        private void OnCultureChange(object o, Controllers.CultureEventArgs e) 
+        {
+            SetUIStrings();
+        } 
        
 
     }
